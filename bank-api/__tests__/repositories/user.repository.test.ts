@@ -3,7 +3,6 @@ import AuthRequestRepository, { UserRepository } from "../../repositories/user.r
 import { expect, jest, test } from '@jest/globals';
 import MockData from "../../data/MockData.js";
 import { AppError } from "../../vendor/pavel_vacha/exceptions/AppError.js";
-import IUser from "../../models/IUser.js";
 import CreateUserDto from "../../dtos/create_user.dto.js";
 
 let database: Database;
