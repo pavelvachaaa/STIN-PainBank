@@ -1,0 +1,17 @@
+import { Matches, IsDefined } from "class-validator";
+import { Expose } from "class-transformer";
+export default class WithdrawDto {
+
+    @IsDefined()
+    @Expose()
+    amount!: number;
+
+    @IsDefined()
+    @Expose()
+    currency!: string;
+
+    @IsDefined()
+    @Expose()
+    email!: string;
+
+}
