@@ -1,4 +1,3 @@
-
 import { Service, Inject, Container } from "typedi";
 import Database from "../vendor/pavel_vacha/core/database.js";
 

@@ -3,22 +3,17 @@ import UserRepository from "../repositories/user.repository.js";
 import IUserRepository from "../interfaces/UserRepository.interface.js";
 import IUser from "../models/IUser.js";
 import hash from "../vendor/pavel_vacha/utils/auth.util.js";
-import jwt, { Secret, JwtPayload } from 'jsonwebtoken';
-import nodemailer, { Transport, TransportOptions } from "nodemailer";
 import IAccountRepository from "../interfaces/AccountRepository.interface.js";
 import AccountRepository from "../repositories/account.repository.js";
-import Database from "../vendor/pavel_vacha/core/database.js";
-import { DatabaseService } from "./database.service.js";
 import { AppError, HttpCode } from "../vendor/pavel_vacha/exceptions/AppError.js";
 import CreateUserDto from "../dtos/create_user.dto.js";
-import OpenAccountDTO from "../dtos/open_account.dto.js";
 
 
 @Service()
 class UserService {
-    private userRepo: IUserRepository; // like here
-    private accountRepo: IAccountRepository; // like here
-    constructor(userRepo: UserRepository, accountRepo: AccountRepository) { // and here
+    private userRepo: IUserRepository;
+    private accountRepo: IAccountRepository;
+    constructor(userRepo: UserRepository, accountRepo: AccountRepository) {
         this.userRepo = userRepo;
         this.accountRepo = accountRepo;
     }

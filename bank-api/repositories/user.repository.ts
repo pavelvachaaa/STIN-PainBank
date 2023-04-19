@@ -1,9 +1,7 @@
 import { Service, } from "typedi";
 import IUserRepository from "../interfaces/UserRepository.interface.js";
-import { v4 as uuidv4 } from 'uuid';
 import IUser from "../models/IUser.js";
 import { DatabaseService } from "../services/database.service.js";
-import DatabaseScheme from "../types/database_sceheme.type.js";
 import { AppError, HttpCode } from "../vendor/pavel_vacha/exceptions/AppError.js";
 import CreateUserDto from "../dtos/create_user.dto.js";
 
