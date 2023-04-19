@@ -3,7 +3,7 @@
     "./dist",
     "./__tests__",
     "./dist",
-    "src/vendor/pavel_vacha/__tests__",
+    "./vendor/pavel_vacha/__tests__",
     "./data/**/*"
   ],
   "ts-node": {

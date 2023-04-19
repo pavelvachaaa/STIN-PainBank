@@ -8,6 +8,9 @@ import { createHttpTerminator } from 'http-terminator';
 import { errorHandler } from "./vendor/pavel_vacha/exceptions/ErrorHandler.js";
 import { ApiResponse } from './vendor/pavel_vacha/interfaces/ApiResponse.interface.js';
 
+import userRoutes from "./routes/user.router.js";
+
+
 dotenv.config();
 
 export let app: Express = express();
@@ -21,6 +24,8 @@ export const httpTerminator = createHttpTerminator({
 
 
 app.use(express.json());
+app.use(`${prefix}/users`, userRoutes);
+
 
 app.get('/', async (req: Request, res: Response) => {
     return new ApiResponse({ data: "data", message: "TADA" }).send(res);
