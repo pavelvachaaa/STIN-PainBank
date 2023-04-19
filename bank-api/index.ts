@@ -4,12 +4,13 @@ import "reflect-metadata";
 import express, { Express, NextFunction, Request, Response, Router } from 'express';
 import dotenv from 'dotenv';
 import http from 'http';
+import userRoutes from "./routes/user.router.js";
+import authRoutes from "./routes/auth.router.js";
+import accountRotues from "./routes/account.router.js";
 import { createHttpTerminator } from 'http-terminator';
 import { errorHandler } from "./vendor/pavel_vacha/exceptions/ErrorHandler.js";
 import { ApiResponse } from './vendor/pavel_vacha/interfaces/ApiResponse.interface.js';
-
-import userRoutes from "./routes/user.router.js";
-
+import { auth } from './middlewares/auth.middleware.js';
 
 dotenv.config();
 
@@ -22,12 +23,18 @@ export const httpTerminator = createHttpTerminator({
     server,
 });
 
-
 app.use(express.json());
+
 app.use(`${prefix}/users`, userRoutes);
+app.use(`${prefix}/auth`, authRoutes);
+app.use(`${prefix}/account`, accountRotues);
 
 
 app.get('/', async (req: Request, res: Response) => {
+    return new ApiResponse({ data: "data", message: "TADA" }).send(res);
+});
+
+app.get('/a', auth, async (req: Request, res: Response) => {
     return new ApiResponse({ data: "data", message: "TADA" }).send(res);
 });
 

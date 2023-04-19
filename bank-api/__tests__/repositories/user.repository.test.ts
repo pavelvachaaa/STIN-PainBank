@@ -32,7 +32,7 @@ describe('User repository test', () => {
         it('should return correct user ', () => {
             const findByEmailSpy = jest.spyOn(database, "findOne");
             const user = repository.findByEmail(MockData.users[0].email);
-            console.log(user)
+            // console.log(user)
             expect(findByEmailSpy).toHaveBeenCalledWith('users', { email: MockData.users[0].email });
             expect(user).toEqual(MockData.users[0]);
         });

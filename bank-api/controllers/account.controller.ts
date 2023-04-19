@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { Service } from "typedi";
 import UserService from "../services/user.service.js";
-import IUser from "../models/IUser.js";
 import { CustomRequest } from "../middlewares/auth.middleware.js";
 import AuthService from "../services/auth.service.js";
 import AccountService from "../services/account.service.js";

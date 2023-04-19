@@ -1,7 +1,7 @@
-import MockData from "../../data/MockData";
-import IPayment from "../../models/IPayment";
-import PaymentRepository from "../../repositories/payment.repository";
-import Database from "../../vendor/pavel_vacha/core/database";
+import MockData from "../../data/MockData.js";
+import IPayment from "../../models/IPayment.js";
+import PaymentRepository from "../../repositories/payment.repository.js";
+import Database from "../../vendor/pavel_vacha/core/database.js";
 
 
 /// TODO: Přidat ještě default users
