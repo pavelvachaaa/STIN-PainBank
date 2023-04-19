@@ -1,9 +1,6 @@
 {
   "exclude": [
     "./dist",
-    "./__tests__",
-    "./dist",
-    "./vendor/pavel_vacha/__tests__",
     "./data/**/*"
   ],
   "ts-node": {
