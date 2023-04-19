@@ -1,4 +1,4 @@
-name: Code coverage test
+name: Code coverage tests
 on:
    push:
      branches: [ "main", "dev" ]
