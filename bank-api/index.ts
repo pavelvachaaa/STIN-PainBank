@@ -11,12 +11,18 @@ import { createHttpTerminator } from 'http-terminator';
 import { errorHandler } from "./vendor/pavel_vacha/exceptions/ErrorHandler.js";
 import { ApiResponse } from './vendor/pavel_vacha/interfaces/ApiResponse.interface.js';
 import { auth } from './middlewares/auth.middleware.js';
+import cors from "cors";
 
 dotenv.config();
 
 export let app: Express = express();
 const port = process.env.PORT ?? 4000;
 const prefix = process.env.API_PREFIX ?? "/api/v1";
+
+app.use(cors({
+    origin: 'http://localhost:3000', credentials: true
+}));
+
 
 export const server = http.createServer(app);
 export const httpTerminator = createHttpTerminator({

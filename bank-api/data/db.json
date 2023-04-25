@@ -1,6 +1,289 @@
 {
-  "users": [],
+  "users": [
+    {
+      "name": "Pan Vácha",
+      "email": "panacek@seznam.cza",
+      "password": "jD71r9jUP6dDkBrZXnqveBpFdmVQLsFgJ7dYJqxzHlY=",
+      "accounts": [
+        {
+          "account_id": "7774891223348206",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "aasdkaop",
+      "email": "asd@dasp.cz",
+      "password": "JkJ3qJBAbD33gfXodbkW8HF/aa5GWUv7H5w2jnBn7gA=",
+      "accounts": [
+        {
+          "account_id": "4489719496292648",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "aasdkaop",
+      "email": "asd@dasp.czA",
+      "password": "JkJ3qJBAbD33gfXodbkW8HF/aa5GWUv7H5w2jnBn7gA=",
+      "accounts": [
+        {
+          "account_id": "4547552805266135",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "aaa",
+      "email": "aaa@aaaa.cz",
+      "password": "L7RLnZlfQr18N8kFqnhTq5zGXZohD8IwUcVgdq9It5M=",
+      "accounts": [
+        {
+          "account_id": "5305338060695161",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "Pavel Vácha",
+      "email": "aaa@aaaa.cza",
+      "password": "kvCXH7tf3fIiY3DPJcUbQC2dfbA0GqSUE8wN4I4/oaM=",
+      "accounts": [
+        {
+          "account_id": "8676545272228619",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "Pavel Vácha",
+      "email": "aaa@aaaa.czam",
+      "password": "kvCXH7tf3fIiY3DPJcUbQC2dfbA0GqSUE8wN4I4/oaM=",
+      "accounts": [
+        {
+          "account_id": "3931287458324240",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "aaaa",
+      "email": "a@ne.cz",
+      "password": "Cqxe61trpYp4ZM1Bw8D8JeTvFqgbxPG2NXBfSoALOJQ=",
+      "accounts": [
+        {
+          "account_id": "9121550707129600",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "aaaa",
+      "email": "a@ne.cza",
+      "password": "Cqxe61trpYp4ZM1Bw8D8JeTvFqgbxPG2NXBfSoALOJQ=",
+      "accounts": [
+        {
+          "account_id": "7765755607209578",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "Abha",
+      "email": "avsvsada@fas.cz",
+      "password": "Fr7WNouLFULNbrh/W8INyDC0GiJY3eQEOKdfpwHSTpo=",
+      "accounts": [
+        {
+          "account_id": "3543044130950493",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "asdasdf asdf",
+      "email": "acvadsac@daw.cz",
+      "password": "zv7mEWb+XFTAit7Sx0htdb1rA97PJlh8DCbIsbWXmJc=",
+      "accounts": [
+        {
+          "account_id": "2179679155444673",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "Pavel Nevím",
+      "email": "uz@metojebe.cz",
+      "password": "GGk+SIQ5OvhAW+KUIpesmsP/Cjr4ujOEY1CiIVAL4Bw=",
+      "accounts": [
+        {
+          "account_id": "0451865400859761",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "asa",
+      "email": "aa@sa.cz",
+      "password": "O4UoIOkxrDofLzgsST5qFJ3U/J9XrYKT1vioY4tg/hI=",
+      "accounts": [
+        {
+          "account_id": "6323940301085368",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "asffas",
+      "email": "pas@email.cz",
+      "password": "GhFWTsT1tt61Z7TUjQ4hN5bIR+ZivuKpWhPJHF+SeNQ=",
+      "accounts": [
+        {
+          "account_id": "4446556308363172",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "adsaf",
+      "email": "asldfas@asdfas.cz",
+      "password": "svKeIctPDvKg9UIIchBoSavGkC/mpIKS57OWsQf3oQk=",
+      "accounts": [
+        {
+          "account_id": "3250203576473189",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "No tomrdej",
+      "email": "pavadsfva@dsa.cz",
+      "password": "pKR5kpuhI98OfSRrwwN26/1ucQvzb7C5nVB7xYw+Isg=",
+      "accounts": [
+        {
+          "account_id": "8622361051602851",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "pavel",
+      "email": "pavel@tul.cz",
+      "password": "tLbl3u7BJTlyzQ7CMOKVHFslGMGc+apBmO6HMf7lh5U=",
+      "accounts": [
+        {
+          "account_id": "0242632567813288",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    },
+    {
+      "name": "Pan Váška",
+      "email": "tohle@neni.cz",
+      "password": "tLbl3u7BJTlyzQ7CMOKVHFslGMGc+apBmO6HMf7lh5U=",
+      "accounts": [
+        {
+          "account_id": "9782787006395912",
+          "balance": 0,
+          "currency": "CZK"
+        }
+      ]
+    }
+  ],
   "payments": [],
-  "auth_requests": [],
+  "auth_requests": [
+    {
+      "attempts_remaining": 3,
+      "auth_request_id": "630a8cca-6181-4c87-9cf1-1b7a4515ebb2",
+      "email": "pavel@tul.cz",
+      "code": 838,
+      "expires_at": 1682379267985
+    },
+    {
+      "attempts_remaining": 3,
+      "auth_request_id": "2adcd509-e0f7-4f58-8899-4fe5a004ac4c",
+      "email": "pavel@tul.cz",
+      "code": 849,
+      "expires_at": 1682379281739
+    },
+    {
+      "attempts_remaining": 3,
+      "auth_request_id": "aebc0def-2ff0-4830-b298-5c39f5f4a7b5",
+      "email": "pavel@tul.cz",
+      "code": 2892,
+      "expires_at": 1682382925092
+    },
+    {
+      "attempts_remaining": 3,
+      "auth_request_id": "b5727bae-8c44-4bff-ad8c-1d2d798c0aa5",
+      "email": "pavel@tul.cz",
+      "code": 4179,
+      "expires_at": 1682383032055
+    },
+    {
+      "attempts_remaining": 3,
+      "auth_request_id": "094a6898-cfd6-4a46-9477-6dc9fc0d7384",
+      "email": "pavel@tul.cz",
+      "code": 4585,
+      "expires_at": 1682383136034
+    },
+    {
+      "attempts_remaining": 3,
+      "auth_request_id": "9cad0f3d-cfa5-4a26-a76c-128f7997cefd",
+      "email": "pavel@tul.cz",
+      "code": 6851,
+      "expires_at": 1682383252742
+    },
+    {
+      "attempts_remaining": 3,
+      "auth_request_id": "341f2515-62e3-4f7c-9614-41c86781aa27",
+      "email": "pavel@tul.cz",
+      "code": 7926,
+      "expires_at": 1682383357870
+    },
+    {
+      "attempts_remaining": 3,
+      "auth_request_id": "6bbd65a0-0455-4397-9a91-2b5d5f8422cd",
+      "email": "pavel@tul.cz",
+      "code": 8943,
+      "expires_at": 1682383419948
+    },
+    {
+      "attempts_remaining": 3,
+      "auth_request_id": "a2a2dfea-c014-46cc-9855-69213e40430d",
+      "email": "pavel@tul.cz",
+      "code": 5049,
+      "expires_at": 1682383483292
+    },
+    {
+      "attempts_remaining": 3,
+      "auth_request_id": "94f50905-c193-4060-bbaf-0409294e1a72",
+      "email": "pavel@tul.cz",
+      "code": 9212,
+      "expires_at": 1682383534766
+    },
+    {
+      "attempts_remaining": 3,
+      "auth_request_id": "fa94f1cb-e709-42da-b02c-0bc0d228b813",
+      "email": "pavel@tul.cz",
+      "code": 1885,
+      "expires_at": 1682383724881
+    }
+  ],
   "currencies": []
 }
