@@ -22,22 +22,13 @@ export const startAuth = async (data: StartAuthDTO) => {
     return response
 }
 
+export const authenticate = async (data: AuthenticateDTO) => {
+    const response = await apiCall({ endpoint: "/auth/authenticate", data: data })
+    return response
+}
 
-/// TODO: udělat něco jako appService.call("api/v1", data)
+
 export const register = async (data: CreateAccountDTO) => {
-    const res = await fetch("http://localhost:4000/api/v1/users/register", {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    const response = await res.json() as IApiResponse;
-
-    if (response.responseCode != 200) {
-        throw Error("Nastala chyba"); //throw message i guess
-    }
-    return response;
+    const response = await apiCall({ endpoint: "/users/register", data: data })
+    return response
 }

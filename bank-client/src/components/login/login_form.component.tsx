@@ -1,10 +1,9 @@
 "use client"
+
 import { StartAuthDTO, startAuth } from "@/services/auth.service";
 import notify from "@/services/notification.service";
 import getErrorMessage from "@/utils/error.util";
-import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
-import { signIn } from "next-auth/react"
 import TwoFactorDialog from "./two_factor_dialog.component";
 
 const initialUserData: StartAuthDTO = {
@@ -43,8 +42,6 @@ export default function LoginForm() {
         },
         [userData]
     );
-
-
 
     return (
         <section className="bg-gray-50 dark:bg-gray-900">

@@ -8,7 +8,7 @@ export interface IApiResponse {
     errors?: any[];
     responseCode?: HttpCode;
     message: string;
-    data?: unknown;
+    data?: any;
 }
 
 export enum HttpCode {

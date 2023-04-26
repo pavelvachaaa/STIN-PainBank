@@ -1,17 +1,37 @@
 "use client"
 import { AuthenticateDTO } from "@/services/auth.service";
+import notify from "@/services/notification.service";
+import getErrorMessage from "@/utils/error.util";
 import { signIn } from "next-auth/react"
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useState } from "react";
 
 
-export default function TwoFactorDialog({ auth_request_id }: { auth_request_id: string }) {
+export default function TwoFactorDialog({ auth_request_id, }: { auth_request_id: string }) {
+    const router = useRouter()
+    const searchParams = useSearchParams();
+
     const [userData, setUserData] = useState<AuthenticateDTO>({ auth_request_id: auth_request_id, code: undefined });
 
     const checkVerification = async (userData: AuthenticateDTO) => {
-        console.log("AHA:", userData);
-        //   await signIn("credentials", { ...userData });
-    };
+        try {
+            const data = await signIn("credentials", {
+                redirect: false,
+                callbackUrl: `${window.location.origin}/dashboard`,
+                ...userData
+            });
 
+            if (!data?.ok) {
+                throw new Error("Zadali jste neplatný kód")
+            } else {
+                notify({ type: "success", message: "Úspěšně jsme vás přihlásili" });
+                router.push(searchParams?.get("callbackUrl") ?? "/dashboard")
+            }
+
+        } catch (error) {
+            notify({ type: "error", message: getErrorMessage(error) });
+        }
+    };
 
     const updateUserDataHandler = useCallback(
         (type: any) => (event: any) => {
@@ -28,11 +48,10 @@ export default function TwoFactorDialog({ auth_request_id }: { auth_request_id: 
         [userData]
     );
 
-
     return <div className="p-6 space-y-4 md:space-y-6 sm:p-8" >
         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Zadejte ověřovací kód
-            <p className="text-sm text-gray-500 font-normal">Pokud nemůžete naleznout e-mail, podívejte se prosím i do spamu</p>
+            <p className="text-sm text-gray-500 font-normal">Pokud nemůžete najít e-mail, podívejte se prosím i do spamu</p>
 
         </h1>
         <form className="space-y-4 md:space-y-6" onSubmit={formHandler()}>
