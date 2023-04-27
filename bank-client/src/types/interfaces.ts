@@ -4,6 +4,14 @@ export interface IUser {
     jwt: string;
 }
 
+export default interface IPayment {
+    type: "IN" | "OUT";
+    email: string;
+    currency: string;
+    amount: number;
+    timestamp: number
+}
+
 export interface IApiResponse {
     errors?: any[];
     responseCode?: HttpCode;
