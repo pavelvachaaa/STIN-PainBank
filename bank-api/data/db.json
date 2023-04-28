@@ -187,17 +187,17 @@
       "accounts": [
         {
           "account_id": "0242632567813288",
-          "balance": 767.96399974823,
+          "balance": 645.66399974823,
           "currency": "CZK"
         },
         {
           "account_id": "4389784957618546",
-          "balance": 0.06142857182770967,
+          "balance": 17.704285714684843,
           "currency": "GBP"
         },
         {
           "account_id": "9562947176724227",
-          "balance": 0,
+          "balance": 100,
           "currency": "CNY"
         },
         {
@@ -1143,6 +1143,62 @@
       "amount": 201,
       "currency": "CNY",
       "timestamp": 1682725057587,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 509.99999999999994,
+      "currency": "CZK",
+      "timestamp": 1682725849403,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 204,
+      "currency": "CZK",
+      "timestamp": 1682725909696,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 100,
+      "currency": "GBP",
+      "timestamp": 1682725938920,
+      "email": "pavel@tul.cz",
+      "type": "IN"
+    },
+    {
+      "amount": 3.642857142857143,
+      "currency": "GBP",
+      "timestamp": 1682725940862,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 7.285714285714286,
+      "currency": "GBP",
+      "timestamp": 1682726022726,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 100,
+      "currency": "CNY",
+      "timestamp": 1682726035979,
+      "email": "pavel@tul.cz",
+      "type": "IN"
+    },
+    {
+      "amount": 1591.7,
+      "currency": "CZK",
+      "timestamp": 1682726044611,
+      "email": "pavel@tul.cz",
+      "type": "IN"
+    },
+    {
+      "amount": 71.42857142857143,
+      "currency": "GBP",
+      "timestamp": 1682726053019,
       "email": "pavel@tul.cz",
       "type": "OUT"
     }

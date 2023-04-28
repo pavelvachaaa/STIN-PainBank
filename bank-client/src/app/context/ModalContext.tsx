@@ -95,7 +95,6 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
                                 <option value="OUT">Výběr</option>
                             </Select>
                         </div>
-
                         <div>
                             <div className="mb-2 block">
                                 <Label
@@ -103,25 +102,22 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
                                     value="Měna a částka"
                                 />
                             </div>
-
+                            {/* TODO: Zde se kvůli té změně statu v amount ztrácí focus */}
                             <CurrencyPay currency={currency} onDropdownChange={updateCurrency} onAmountChange={updateAmount} ></CurrencyPay>
-
                         </div>
                         <div className="w-full">
                             <Button onClick={() => {
                                 makeTransaction({ amount: amount, type: type, currency: currency }).then((data) => {
                                     if (data) {
-                                        const index = accounts.findIndex((acc) => acc.currency === currency)
+                                        const index = accounts.findIndex((acc) => acc.currency === data?.currency)
                                         if (index > -1) {
-                                            accounts[index].balance += type == "IN" ? amount : -amount;
+                                            accounts[index].balance += type == "IN" ? data?.amount : -data?.amount;
                                             console.log(accounts);
                                             setAccounts([...accounts]);
                                         }
                                         setIsOpen(false);
                                     }
                                 });
-
-
                             }}>
                                 Provést platbu
                             </Button>

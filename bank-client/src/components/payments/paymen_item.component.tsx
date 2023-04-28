@@ -17,7 +17,7 @@ export default function PaymentItem({ currency = "CZK", amount = 0, email = "", 
                     </p>
                 </div>
                 <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                    {currency} {amount}
+                    {currency} {amount.toFixed(2)}
                 </div>
             </div>
         </li>

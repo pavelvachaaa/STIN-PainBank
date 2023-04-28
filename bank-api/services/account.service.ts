@@ -105,6 +105,8 @@ class AccountService {
             this.paymentRepo.save({ amount: dto.amount, currency: correctCurrency, timestamp: Date.now(), email: dto.email, type: "OUT" });
         }
 
+        return dto;
+
         /// Zkusit vrátit info o tom, jestli to proběhlo. nebo vrátit ten payment nebo účet, asi podle frontendu
         /// Nebo true a pak to na klientovi odečíst
 
@@ -155,6 +157,8 @@ class AccountService {
         }
 
         this.paymentRepo.save({ amount: dto.amount, currency: dto.currency, timestamp: Date.now(), email: dto.email, type: "IN" });
+
+        return dto;
     }
 
     /// TODO: error checky atd, user exists ... 
