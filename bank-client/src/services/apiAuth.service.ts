@@ -12,7 +12,7 @@ export const authApiCall = async ({ endpoint = "", data = {}, method = "POST" }:
     try {
         session = await getServerSession()
     } catch (e) {
-        throw Error("Nemohli jsme vás autorizovat");
+        throw new Error("Nemohli jsme vás autorizovat");
     }
 
     const res = await fetch(`${url}${endpoint}`, {
@@ -21,7 +21,7 @@ export const authApiCall = async ({ endpoint = "", data = {}, method = "POST" }:
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            "Authorization": `Bearer ${session?.user?.image}`
+            "Authorization": `Bearer ${session?.user?.image}` // Je zde user.image, protože protože z nějakého důvodu to nebere next-auth-d.ts
         },
         body: JSON.stringify(data)
     })
@@ -29,7 +29,7 @@ export const authApiCall = async ({ endpoint = "", data = {}, method = "POST" }:
     const response = await res.json() as IApiResponse;
 
     if (response.responseCode != 200) {
-        throw Error(response.message ?? "Někde nastala chyba");
+        throw new Error(response.message ?? "Někde nastala chyba");
     }
 
     return response;

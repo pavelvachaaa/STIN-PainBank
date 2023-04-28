@@ -50,6 +50,21 @@ class AccountController {
 
         return new ApiResponse({ data: result, message: "Úspěšně jste vybrali peníze z účtu" }).send(res);
     }
+    async getUserAccounts(_req: CustomRequest, res: Response) {
+        const { email }: { email: string } = _req.body;
+        if (_req.userData.email !== email) {
+            throw new AppError({
+                description: "K tomuto prostředku nemáte přístup!",
+                httpCode: HttpCode.FORBIDEN,
+                name: "ACCOUNT_CONTROLLER",
+                isOperational: true
+            });
+        }
+
+        const result = await this.accountService.getAccounts(email);
+
+        return new ApiResponse({ data: result, message: "Vracíme váše účty" }).send(res);
+    }
 
     async deposit(_req: CustomRequest, res: Response) {
         ///TODO: Check resources -> obecná metoda

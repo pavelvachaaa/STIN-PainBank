@@ -6,16 +6,23 @@ import { useState } from "react";
 
 const PAGE_SIZE = 10;
 
-
 export default function PaymentsTable({ payments = [] }: { payments: IPayment[] }) {
+    const currencies = (Object.keys(groupBy(payments, (item) => item.currency)) ?? []);
+
     const [currentPage, setCurrentPage] = useState(1);
-    // Udělat z toho pole
-    const [currencyFilter, setCurrencyFilter] = useState("CZK");
+    const [currencyFilter, setCurrencyFilter] = useState(currencies);
 
-    const filterChange = (currency: string) => {
+    let number_of_pages = Math.ceil((payments ?? []).filter((payment) => currencyFilter.includes(payment.currency)).length / PAGE_SIZE)
 
+    const filterChange = (currency: string): void => {
+        /// Při změně filtru zkontrolovat počet pages a počet vyfiltrovaných itemů
+        /// A podle toho uživatele v paginaci přesměrovat, kdyby čísla neseděla
+        if (currencyFilter.includes(currency)) {
+            setCurrencyFilter(currencyFilter.filter((val) => val !== currency))
+        } else {
+            setCurrencyFilter([...currencyFilter, currency])
+        }
     }
-    const NUMBER_OF_PAGES = Math.ceil((payments ?? []).filter((payment) => payment.currency === currencyFilter).length / PAGE_SIZE)
 
     return (
         <>
@@ -40,11 +47,11 @@ export default function PaymentsTable({ payments = [] }: { payments: IPayment[] 
 
                                 <div className="flex items-center w-full space-x-3 md:w-auto">
                                     <Dropdown label="Filtry"  >
-                                        {(Object.keys(groupBy(payments, (item) => item.currency)) ?? []).map((item) => {
+                                        {currencies.map((item) => {
                                             return (
-                                                <Dropdown.Item >
+                                                <Dropdown.Item key={item}>
                                                     <div className="flex items-center">
-                                                        <input id="checkbox-item-1" type="checkbox" value={item} onChange={(currency) => setCurrencyFilter(currency.target.value)} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                        <input id="checkbox-item-1" type="checkbox" value={item} checked={currencyFilter.includes(item)} onChange={(currency) => filterChange(currency.target.value)} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                         </input>
                                                         <label htmlFor="checkbox-item-1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{item}</label>
                                                     </div>
@@ -79,10 +86,10 @@ export default function PaymentsTable({ payments = [] }: { payments: IPayment[] 
 
                 </Table.Head>
                 <Table.Body className="divide-y">
-                    {(payments ?? []).filter((payment) => payment.currency === currencyFilter).slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE).map((payment) => {
+                    {(payments ?? []).filter((payment) => currencyFilter.includes(payment.currency)).slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE).map((payment) => {
                         return (
-                            <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                            <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={payment.timestamp}>
+                                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white ">
                                     {payment.type == "IN" ? "Vklad" : "Výběr"}
                                 </Table.Cell>
                                 <Table.Cell>
@@ -105,7 +112,7 @@ export default function PaymentsTable({ payments = [] }: { payments: IPayment[] 
                 currentPage={currentPage}
                 nextLabel="Další"
                 previousLabel="Zpět"
-                totalPages={NUMBER_OF_PAGES}
+                totalPages={number_of_pages}
                 onPageChange={(page: number) => setCurrentPage(page)}
             />
         </>

@@ -187,12 +187,12 @@
       "accounts": [
         {
           "account_id": "0242632567813288",
-          "balance": 4750,
+          "balance": 234.30000000000132,
           "currency": "CZK"
         },
         {
           "account_id": "4389784957618546",
-          "balance": 2000,
+          "balance": 156.0714285714283,
           "currency": "GBP"
         }
       ]
@@ -280,6 +280,286 @@
       "timestamp": 1682639588776,
       "email": "pavel@tul.cz",
       "type": "IN"
+    },
+    {
+      "amount": 1000,
+      "currency": "GBP",
+      "timestamp": 1682639589422,
+      "email": "pavel@tul.cz",
+      "type": "IN"
+    },
+    {
+      "amount": 20.4,
+      "currency": "CZK",
+      "timestamp": 1682696583286,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 20.4,
+      "currency": "CZK",
+      "timestamp": 1682696588205,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 204,
+      "currency": "CZK",
+      "timestamp": 1682696694757,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 728.5714285714286,
+      "currency": "GBP",
+      "timestamp": 1682696700021,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 728.5714285714286,
+      "currency": "GBP",
+      "timestamp": 1682696713859,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 517.8571428571429,
+      "currency": "GBP",
+      "timestamp": 1682696743882,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 1224,
+      "currency": "CZK",
+      "timestamp": 1682696777693,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 1224,
+      "currency": "CZK",
+      "timestamp": 1682696778724,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 1224,
+      "currency": "CZK",
+      "timestamp": 1682696779407,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 833,
+      "currency": "CZK",
+      "timestamp": 1682696799962,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 0.8928571428571429,
+      "currency": "GBP",
+      "timestamp": 1682696808543,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 0.8928571428571429,
+      "currency": "GBP",
+      "timestamp": 1682696811438,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 0.8928571428571429,
+      "currency": "GBP",
+      "timestamp": 1682696812100,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 0.8928571428571429,
+      "currency": "GBP",
+      "timestamp": 1682696812705,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 18.214285714285715,
+      "currency": "GBP",
+      "timestamp": 1682696815182,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 1000,
+      "currency": "GBP",
+      "timestamp": 1682696954694,
+      "email": "pavel@tul.cz",
+      "type": "IN"
+    },
+    {
+      "amount": 100,
+      "currency": "CZK",
+      "timestamp": 1682707674896,
+      "email": "pavel@tul.cz",
+      "type": "IN"
+    },
+    {
+      "amount": 100,
+      "currency": "CZK",
+      "timestamp": 1682708198077,
+      "email": "pavel@tul.cz",
+      "type": "IN"
+    },
+    {
+      "amount": 624.7,
+      "currency": "CZK",
+      "timestamp": 1682708203872,
+      "email": "pavel@tul.cz",
+      "type": "IN"
+    },
+    {
+      "amount": 624.7,
+      "currency": "CZK",
+      "timestamp": 1682708205790,
+      "email": "pavel@tul.cz",
+      "type": "IN"
+    },
+    {
+      "amount": 624.7,
+      "currency": "CZK",
+      "timestamp": 1682708205988,
+      "email": "pavel@tul.cz",
+      "type": "IN"
+    },
+    {
+      "amount": 624.7,
+      "currency": "CZK",
+      "timestamp": 1682708206161,
+      "email": "pavel@tul.cz",
+      "type": "IN"
+    },
+    {
+      "amount": 624.7,
+      "currency": "CZK",
+      "timestamp": 1682708226979,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 2039.9999999999998,
+      "currency": "CZK",
+      "timestamp": 1682708239163,
+      "email": "pavel@tul.cz",
+      "type": "IN"
+    },
+    {
+      "amount": 2039.9999999999998,
+      "currency": "CZK",
+      "timestamp": 1682708244172,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 2039.9999999999998,
+      "currency": "CZK",
+      "timestamp": 1682708245028,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 72.85714285714286,
+      "currency": "GBP",
+      "timestamp": 1682708246369,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 72.85714285714286,
+      "currency": "GBP",
+      "timestamp": 1682708255887,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 72.85714285714286,
+      "currency": "GBP",
+      "timestamp": 1682708256950,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 72.85714285714286,
+      "currency": "GBP",
+      "timestamp": 1682708258467,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 72.85714285714286,
+      "currency": "GBP",
+      "timestamp": 1682708259297,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 72.85714285714286,
+      "currency": "GBP",
+      "timestamp": 1682708260073,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 72.85714285714286,
+      "currency": "GBP",
+      "timestamp": 1682708260317,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 72.85714285714286,
+      "currency": "GBP",
+      "timestamp": 1682708260498,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 72.85714285714286,
+      "currency": "GBP",
+      "timestamp": 1682708260719,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 72.85714285714286,
+      "currency": "GBP",
+      "timestamp": 1682708260902,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 72.85714285714286,
+      "currency": "GBP",
+      "timestamp": 1682708261101,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 72.85714285714286,
+      "currency": "GBP",
+      "timestamp": 1682708261325,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
+    },
+    {
+      "amount": 72.85714285714286,
+      "currency": "GBP",
+      "timestamp": 1682708261481,
+      "email": "pavel@tul.cz",
+      "type": "OUT"
     }
   ],
   "auth_requests": [
@@ -665,6 +945,13 @@
           "amount": 1,
           "name": "GBP",
           "rate": 28
+        },
+        {
+          "amount": 1,
+          "country": "Czech",
+          "name": "CZK",
+          "rate": 1,
+          "full_name": "Česká koruna"
         }
       ]
     }

@@ -26,6 +26,7 @@ export default async function PaymentsPage() {
         <>
 
             <Header></Header>
+            
             <div className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl ">
                 <PaymentsTable payments={ [...data, ...data]}></PaymentsTable>
             </div>
