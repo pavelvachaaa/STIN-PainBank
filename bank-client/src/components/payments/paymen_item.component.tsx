@@ -1,7 +1,7 @@
 import IPayment from "@/types/interfaces";
 import Image from "next/image";
 
-export default function PaymentItem({ currency = "CZK", amount = 0, email = "", type = "IN", timestamp=0 }: IPayment) {
+export default function PaymentItem({ currency = "CZK", amount = 0, email = "", type = "IN", timestamp = 0 }: IPayment) {
     return (
         <li className="py-3 sm:py-4">
             <div className="flex items-center space-x-4">

@@ -1,22 +1,21 @@
 "use client"
-
-import React, { useContext, useState } from 'react';
-import { Button, Label, Modal, Select, TextInput } from "flowbite-react"
-import CurrencyDropdown from '@/components/dropwdowns/currency.component';
+import React, { useCallback, useContext, useState } from 'react';
+import { Button, Label, Modal, Select } from "flowbite-react"
 import CurrencyPay from '@/components/dropwdowns/currency_pay.component';
 import { getSession } from 'next-auth/react';
 import { apiCall } from '@/services/api.service';
 import notify from '@/services/notification.service';
 import getErrorMessage from '@/utils/error.util';
+import { AccountContext } from './AccountContext';
 
 type ModalContextType = {
     isOpen: boolean;
-    toggleModal: (isOpen: boolean) => void;
+    toggleModal: ({ currency = "CZK", type = "IN" }: { currency: string, type: "IN" | "OUT" }) => void;
 };
 
 export const ModalContext = React.createContext<ModalContextType>({
     isOpen: false,
-    toggleModal: (val: boolean) => { },
+    toggleModal: () => { },
 });
 
 
@@ -26,7 +25,7 @@ type ModalProviderProps = {
 
 
 /// MRDÁM TO -> nestojí  mi to za konflikty mezi apiCall a authApiCall, abych to strkal do .service
-const openAccount = async ({ currency, amount, type }: { currency: string, amount: number, type: "IN" | "OUT" }): Promise<any> => {
+export const makeTransaction = async ({ currency, amount, type }: { currency: string, amount: number, type: "IN" | "OUT" }): Promise<any> => {
     const session = await getSession()
     try {
         const res = await apiCall({ endpoint: `/account/${type == "IN" ? "deposit" : "withdraw"}`, data: { email: session?.user?.email, currency: currency, amount: amount } })
@@ -39,20 +38,39 @@ const openAccount = async ({ currency, amount, type }: { currency: string, amoun
     }
 }
 
-
 export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [currency, setCurrency] = useState("CZK");
-    const [type, setType] = useState<"IN"|"OUT">("IN");
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [currency, setCurrency] = useState<string>("CZK");
+    const [amount, setAmount] = useState<number>(0);
+    const [type, setType] = useState<"IN" | "OUT">("IN");
+    const { accounts, setAccounts } = useContext(AccountContext);
 
-    const toggleModal = () => {
-        console.log("Toggled")
+
+    const toggleModal = ({ currency = "CZK", type = "IN" }: { currency: string, type: "IN" | "OUT" }) => {
+        setCurrency(currency);
+        setType(type);
         setIsOpen(!isOpen);
     };
+
+    const updateAmount = useCallback(
+        (event: any) => setAmount(Number(event.currentTarget.value)),
+        [amount]
+    );
+
+    const updateCurrency = useCallback(
+        (event: any) => setCurrency(event),
+        [currency]
+    )
+
+    const updateType = useCallback(
+        (event: any) => setType((event.currentTarget.value ?? "IN") as "IN" | "OUT"),
+        [type]
+    )
 
     const Dialog: any = () => {
         return (
             <Modal
+                key="Modal_Transaction"
                 show={isOpen}
                 size="md"
                 popup={true}
@@ -72,7 +90,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
                                     value="Typ"
                                 />
                             </div>
-                            <Select  onChange={(val) => setType((val.currentTarget.value ?? "IN") as "IN" | "OUT")}>
+                            <Select value={type} onChange={updateType}>
                                 <option value="IN">Vklad</option>
                                 <option value="OUT">Výběr</option>
                             </Select>
@@ -82,13 +100,29 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
                             <div className="mb-2 block">
                                 <Label
                                     htmlFor="amount"
-                                    value="Měna"
+                                    value="Měna a částka"
                                 />
                             </div>
-                            <CurrencyPay onDropdownChange={(val: string) => setCurrency(val)}></CurrencyPay>
+
+                            <CurrencyPay currency={currency} onDropdownChange={updateCurrency} onAmountChange={updateAmount} ></CurrencyPay>
+
                         </div>
                         <div className="w-full">
-                            <Button onClick={() => openAccount({amount: 100, type: type,currency: currency})}>
+                            <Button onClick={() => {
+                                makeTransaction({ amount: amount, type: type, currency: currency }).then((data) => {
+                                    if (data) {
+                                        const index = accounts.findIndex((acc) => acc.currency === currency)
+                                        if (index > -1) {
+                                            accounts[index].balance += type == "IN" ? amount : -amount;
+                                            console.log(accounts);
+                                            setAccounts([...accounts]);
+                                        }
+                                        setIsOpen(false);
+                                    }
+                                });
+
+
+                            }}>
                                 Provést platbu
                             </Button>
                         </div>
@@ -100,10 +134,8 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
 
     return (
         <ModalContext.Provider value={{ isOpen, toggleModal }}>
-            {isOpen ? (
-                Dialog()
-            ) : <></>}
             {children}
+            {Dialog()}
         </ModalContext.Provider>
     );
 };

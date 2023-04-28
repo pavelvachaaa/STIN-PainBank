@@ -7,6 +7,7 @@ import React, { useContext, useEffect, useState } from "react";
 import OpenAccount from "./open_account.component";
 import LoadingCards from "../loading/loading.cards";
 import { ModalContext } from "@/app/context/ModalContext";
+import { AccountContext } from "@/app/context/AccountContext";
 
 async function getData(): Promise<IAccount[]> {
     let data;
@@ -19,14 +20,15 @@ async function getData(): Promise<IAccount[]> {
 }
 
 export default function AccountsOverview() {
-    const [data, setData] = useState<IAccount[]>([])
     const [isLoading, setLoading] = useState(false)
+    const {accounts, setAccounts } = useContext(AccountContext);
+
     useEffect(() => {
         setLoading(true)
         getData()
             .then((data) => {
-                setData(data)
                 setLoading(false)
+                setAccounts(data ?? [])
             })
     }, [])
 
@@ -34,8 +36,8 @@ export default function AccountsOverview() {
 
     return (
         <>
-            {(data ?? []).map((account) => <AccountCard  key={account.account_id} {...account}></AccountCard>)}
-            <OpenAccount onAccountOpen={(account: IAccount) => setData([...data, account])}></OpenAccount>
+            {(accounts ?? []).map((account) => <AccountCard key={account.account_id} {...account}></AccountCard>)}
+            <OpenAccount onAccountOpen={(account: IAccount) => setAccounts([...accounts, account])}></OpenAccount>
         </>
 
     )

@@ -10,7 +10,7 @@ async function getData(): Promise<IPayment[]> {
     } catch (e) {
         return [];
     }
-
+    
     return data.data;
 }
 

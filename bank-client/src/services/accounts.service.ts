@@ -1,5 +1,3 @@
-// import { authApiCall } from "./apiAuth.service"
-
 import { apiCall } from "./api.service"
 
 export const getAccounts = async (email: string) => {

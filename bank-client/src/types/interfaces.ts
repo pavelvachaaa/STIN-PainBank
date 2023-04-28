@@ -19,12 +19,12 @@ export interface ICurrency {
     name: string;
     rate: number
 }
+
 export interface IAccount {
     account_id: string;
     currency: string;
     balance: number;
 }
-
 
 export interface IApiResponse {
     errors?: any[];

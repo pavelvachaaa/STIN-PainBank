@@ -15,6 +15,7 @@ export default function PaymentsTable({ payments = [] }: { payments: IPayment[] 
     let number_of_pages = Math.ceil((payments ?? []).filter((payment) => currencyFilter.includes(payment.currency)).length / PAGE_SIZE)
 
     const filterChange = (currency: string): void => {
+        /// TODO:
         /// Při změně filtru zkontrolovat počet pages a počet vyfiltrovaných itemů
         /// A podle toho uživatele v paginaci přesměrovat, kdyby čísla neseděla
         if (currencyFilter.includes(currency)) {
@@ -26,7 +27,7 @@ export default function PaymentsTable({ payments = [] }: { payments: IPayment[] 
 
     return (
         <>
-            <section className="bg-gray-50 dark:bg-gray-900  ">
+            <section className="bg-gray-50 dark:bg-gray-900 ">
                 <div className=" mx-auto">
                     <div className="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
                         <div className="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
@@ -44,7 +45,6 @@ export default function PaymentsTable({ payments = [] }: { payments: IPayment[] 
                                 </form>
                             </div>
                             <div className="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
-
                                 <div className="flex items-center w-full space-x-3 md:w-auto">
                                     <Dropdown label="Filtry"  >
                                         {currencies.map((item) => {
@@ -59,7 +59,6 @@ export default function PaymentsTable({ payments = [] }: { payments: IPayment[] 
                                             )
                                         })}
                                     </Dropdown>
-
                                 </div>
                             </div>
                         </div>
@@ -68,9 +67,7 @@ export default function PaymentsTable({ payments = [] }: { payments: IPayment[] 
             </section>
 
             <Table>
-
                 <Table.Head>
-
                     <Table.HeadCell>
                         Typ
                     </Table.HeadCell>
@@ -83,7 +80,6 @@ export default function PaymentsTable({ payments = [] }: { payments: IPayment[] 
                     <Table.HeadCell>
                         Kdy
                     </Table.HeadCell>
-
                 </Table.Head>
                 <Table.Body className="divide-y">
                     {(payments ?? []).filter((payment) => currencyFilter.includes(payment.currency)).slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE).map((payment) => {
@@ -93,7 +89,7 @@ export default function PaymentsTable({ payments = [] }: { payments: IPayment[] 
                                     {payment.type == "IN" ? "Vklad" : "Výběr"}
                                 </Table.Cell>
                                 <Table.Cell>
-                                    {payment.amount}
+                                    {payment.amount.toFixed(2)}
                                 </Table.Cell>
                                 <Table.Cell>
                                     {payment.currency}
@@ -105,8 +101,6 @@ export default function PaymentsTable({ payments = [] }: { payments: IPayment[] 
                         )
                     })}
                 </Table.Body>
-
-
             </Table>
             <Pagination className="flex items-center justify-center text-center"
                 currentPage={currentPage}
