@@ -189,6 +189,11 @@
           "account_id": "0242632567813288",
           "balance": 4750,
           "currency": "CZK"
+        },
+        {
+          "account_id": "4389784957618546",
+          "balance": 2000,
+          "currency": "GBP"
         }
       ]
     },
@@ -268,6 +273,13 @@
       "timestamp": 1682627843821,
       "email": "pavel@tul.cz",
       "type": "OUT"
+    },
+    {
+      "amount": 1000,
+      "currency": "GBP",
+      "timestamp": 1682639588776,
+      "email": "pavel@tul.cz",
+      "type": "IN"
     }
   ],
   "auth_requests": [
@@ -435,221 +447,226 @@
   ],
   "currencies": [
     {
-      "country": "Austrálie",
-      "full_name": "dolar",
-      "amount": 1,
-      "name": "AUD",
-      "rate": 14.318
-    },
-    {
-      "country": "Brazílie",
-      "full_name": "real",
-      "amount": 1,
-      "name": "BRL",
-      "rate": 4.297
-    },
-    {
-      "country": "Bulharsko",
-      "full_name": "lev",
-      "amount": 1,
-      "name": "BGN",
-      "rate": 11.936
-    },
-    {
-      "country": "Čína",
-      "full_name": "žen-min-pi",
-      "amount": 1,
-      "name": "CNY",
-      "rate": 3.082
-    },
-    {
-      "country": "Dánsko",
-      "full_name": "koruna",
-      "amount": 1,
-      "name": "DKK",
-      "rate": 3.133
-    },
-    {
-      "country": "EMU",
-      "full_name": "euro",
-      "amount": 1,
-      "name": "EUR",
-      "rate": 25.1
-    },
-    {
-      "country": "Filipíny",
-      "full_name": "peso",
-      "amount": 100,
-      "name": "PHP",
-      "rate": 38.189
-    },
-    {
-      "country": "Hongkong",
-      "full_name": "dolar",
-      "amount": 1,
-      "name": "HKD",
-      "rate": 2.689
-    },
-    {
-      "country": "Indie",
-      "full_name": "rupie",
-      "amount": 100,
-      "name": "INR",
-      "rate": 25.832
-    },
-    {
-      "country": "Indonesie",
-      "full_name": "rupie",
-      "amount": 1000,
-      "name": "IDR",
-      "rate": 1.436
-    },
-    {
-      "country": "Island",
-      "full_name": "koruna",
-      "amount": 100,
-      "name": "ISK",
-      "rate": 15.595
-    },
-    {
-      "country": "Izrael",
-      "full_name": "nový šekel",
-      "amount": 1,
-      "name": "ILS",
-      "rate": 5.773
-    },
-    {
-      "country": "Japonsko",
-      "full_name": "jen",
-      "amount": 100,
-      "name": "JPY",
-      "rate": 15.926
-    },
-    {
-      "country": "Jižní Afrika",
-      "full_name": "rand",
-      "amount": 1,
-      "name": "ZAR",
-      "rate": 1.171
-    },
-    {
-      "country": "Kanada",
-      "full_name": "dolar",
-      "amount": 1,
-      "name": "CAD",
-      "rate": 15.857
-    },
-    {
-      "country": "Korejská republika",
-      "full_name": "won",
-      "amount": 100,
-      "name": "KRW",
-      "rate": 1.623
-    },
-    {
-      "country": "Maďarsko",
-      "full_name": "forint",
-      "amount": 100,
-      "name": "HUF",
-      "rate": 6.247
-    },
-    {
-      "country": "Malajsie",
-      "full_name": "ringgit",
-      "amount": 1,
-      "name": "MYR",
-      "rate": 4.795
-    },
-    {
-      "country": "Mexiko",
-      "full_name": "peso",
-      "amount": 1,
-      "name": "MXN",
-      "rate": 1.169
-    },
-    {
-      "country": "MMF",
-      "full_name": "ZPČ",
-      "amount": 1,
-      "name": "XDR",
-      "rate": 28.533
-    },
-    {
-      "country": "Norsko",
-      "full_name": "koruna",
-      "amount": 1,
-      "name": "NOK",
-      "rate": 2.048
-    },
-    {
-      "country": "Nový Zéland",
-      "full_name": "dolar",
-      "amount": 1,
-      "name": "NZD",
-      "rate": 13.277
-    },
-    {
-      "country": "Polsko",
-      "full_name": "zlotý",
-      "amount": 1,
-      "name": "PLN",
-      "rate": 5.027
-    },
-    {
-      "country": "Rumunsko",
-      "full_name": "leu",
-      "amount": 1,
-      "name": "RON",
-      "rate": 4.724
-    },
-    {
-      "country": "Singapur",
-      "full_name": "dolar",
-      "amount": 1,
-      "name": "SGD",
-      "rate": 15.917
-    },
-    {
-      "country": "Švédsko",
-      "full_name": "koruna",
-      "amount": 1,
-      "name": "SEK",
-      "rate": 2.057
-    },
-    {
-      "country": "Švýcarsko",
-      "full_name": "frank",
-      "amount": 1,
-      "name": "CHF",
-      "rate": 23.748
-    },
-    {
-      "country": "Thajsko",
-      "full_name": "baht",
-      "amount": 100,
-      "name": "THB",
-      "rate": 61.932
-    },
-    {
-      "country": "Turecko",
-      "full_name": "lira",
-      "amount": 1,
-      "name": "TRY",
-      "rate": 1.09
-    },
-    {
-      "country": "USA",
-      "full_name": "dolar",
-      "amount": 1,
-      "name": "USD",
-      "rate": 20.4
-    },
-    {
-      "country": "Velká Británie",
-      "full_name": "libra",
-      "amount": 1,
-      "name": "GBP",
-      "rate": 28
+      "fetched_at": 17,
+      "data": [
+        {
+          "country": "Austrálie",
+          "full_name": "dolar",
+          "amount": 1,
+          "name": "AUD",
+          "rate": 14.318
+        },
+        {
+          "country": "Brazílie",
+          "full_name": "real",
+          "amount": 1,
+          "name": "BRL",
+          "rate": 4.297
+        },
+        {
+          "country": "Bulharsko",
+          "full_name": "lev",
+          "amount": 1,
+          "name": "BGN",
+          "rate": 11.936
+        },
+        {
+          "country": "Čína",
+          "full_name": "žen-min-pi",
+          "amount": 1,
+          "name": "CNY",
+          "rate": 3.082
+        },
+        {
+          "country": "Dánsko",
+          "full_name": "koruna",
+          "amount": 1,
+          "name": "DKK",
+          "rate": 3.133
+        },
+        {
+          "country": "EMU",
+          "full_name": "euro",
+          "amount": 1,
+          "name": "EUR",
+          "rate": 25.1
+        },
+        {
+          "country": "Filipíny",
+          "full_name": "peso",
+          "amount": 100,
+          "name": "PHP",
+          "rate": 38.189
+        },
+        {
+          "country": "Hongkong",
+          "full_name": "dolar",
+          "amount": 1,
+          "name": "HKD",
+          "rate": 2.689
+        },
+        {
+          "country": "Indie",
+          "full_name": "rupie",
+          "amount": 100,
+          "name": "INR",
+          "rate": 25.832
+        },
+        {
+          "country": "Indonesie",
+          "full_name": "rupie",
+          "amount": 1000,
+          "name": "IDR",
+          "rate": 1.436
+        },
+        {
+          "country": "Island",
+          "full_name": "koruna",
+          "amount": 100,
+          "name": "ISK",
+          "rate": 15.595
+        },
+        {
+          "country": "Izrael",
+          "full_name": "nový šekel",
+          "amount": 1,
+          "name": "ILS",
+          "rate": 5.773
+        },
+        {
+          "country": "Japonsko",
+          "full_name": "jen",
+          "amount": 100,
+          "name": "JPY",
+          "rate": 15.926
+        },
+        {
+          "country": "Jižní Afrika",
+          "full_name": "rand",
+          "amount": 1,
+          "name": "ZAR",
+          "rate": 1.171
+        },
+        {
+          "country": "Kanada",
+          "full_name": "dolar",
+          "amount": 1,
+          "name": "CAD",
+          "rate": 15.857
+        },
+        {
+          "country": "Korejská republika",
+          "full_name": "won",
+          "amount": 100,
+          "name": "KRW",
+          "rate": 1.623
+        },
+        {
+          "country": "Maďarsko",
+          "full_name": "forint",
+          "amount": 100,
+          "name": "HUF",
+          "rate": 6.247
+        },
+        {
+          "country": "Malajsie",
+          "full_name": "ringgit",
+          "amount": 1,
+          "name": "MYR",
+          "rate": 4.795
+        },
+        {
+          "country": "Mexiko",
+          "full_name": "peso",
+          "amount": 1,
+          "name": "MXN",
+          "rate": 1.169
+        },
+        {
+          "country": "MMF",
+          "full_name": "ZPČ",
+          "amount": 1,
+          "name": "XDR",
+          "rate": 28.533
+        },
+        {
+          "country": "Norsko",
+          "full_name": "koruna",
+          "amount": 1,
+          "name": "NOK",
+          "rate": 2.048
+        },
+        {
+          "country": "Nový Zéland",
+          "full_name": "dolar",
+          "amount": 1,
+          "name": "NZD",
+          "rate": 13.277
+        },
+        {
+          "country": "Polsko",
+          "full_name": "zlotý",
+          "amount": 1,
+          "name": "PLN",
+          "rate": 5.027
+        },
+        {
+          "country": "Rumunsko",
+          "full_name": "leu",
+          "amount": 1,
+          "name": "RON",
+          "rate": 4.724
+        },
+        {
+          "country": "Singapur",
+          "full_name": "dolar",
+          "amount": 1,
+          "name": "SGD",
+          "rate": 15.917
+        },
+        {
+          "country": "Švédsko",
+          "full_name": "koruna",
+          "amount": 1,
+          "name": "SEK",
+          "rate": 2.057
+        },
+        {
+          "country": "Švýcarsko",
+          "full_name": "frank",
+          "amount": 1,
+          "name": "CHF",
+          "rate": 23.748
+        },
+        {
+          "country": "Thajsko",
+          "full_name": "baht",
+          "amount": 100,
+          "name": "THB",
+          "rate": 61.932
+        },
+        {
+          "country": "Turecko",
+          "full_name": "lira",
+          "amount": 1,
+          "name": "TRY",
+          "rate": 1.09
+        },
+        {
+          "country": "USA",
+          "full_name": "dolar",
+          "amount": 1,
+          "name": "USD",
+          "rate": 20.4
+        },
+        {
+          "country": "Velká Británie",
+          "full_name": "libra",
+          "amount": 1,
+          "name": "GBP",
+          "rate": 28
+        }
+      ]
     }
   ]
 }

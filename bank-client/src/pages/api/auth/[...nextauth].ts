@@ -12,37 +12,42 @@ export const authOptions: NextAuthOptions = {
             credentials: { auth_request_id: {}, code: {} },
             async authorize(credentials, req): Promise<any> {
                 const res = await authenticate({ auth_request_id: credentials?.auth_request_id ?? "", code: Number(credentials?.code) });
-                
+
                 if (!res?.data == null) {
                     return null;
                 }
-                
-                return {
-                    id: res.data?.user.id,
-                    name: res.data?.user.name,
+                console.log("[res.data]", res.data);
+                const data = {
+                    id: res.data?.user?.id ?? "",
+                    name: res.data?.name ?? "Pavel Vácha",
                     email: res.data?.user.email,
-                    access_token: res.data?.token
+                    accessToken: res.data?.token,
+                    image: res.data?.token,
+                    role: "ADMIN"
                 }
+                console.log("[data]", data)
+                return data;
 
             },
         }),
     ],
-
     callbacks: {
-        async session({ session, token, user }: { session: any, token: any, user: any }) {
-            session.user.id = token.id;
-            session.accessToken! = token.accessToken;
+      
+        async session({ session, token, user }) {
+            if (session?.user) {
+                session.user.id = user?.id ?? "";
+                session.user.role = (token as any).role
+                session.user.accessToken = (token as any).accessToken
+            }
+            console.log("SESSION JE PRVNI????", session)
             return session;
         },
-        async jwt({ token, user, account, profile, isNewUser }) {
-            if (user) {
-                token.id = user.id;
-            }
-            if (account) {
-                token.accessToken = account.access_token;
-            }
-            return token;
+        async jwt({ token, user }) {
+            console.log("A NEBO JWT????", { ...token, ...user })
+
+            return { ...token, ...user };
         },
+
     },
     pages: {
         signIn: "/login",

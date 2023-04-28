@@ -18,7 +18,7 @@ export class CurrencyRepository implements ICurrencyRepository {
     }
 
     public doesCurrencyExist(currency: string): boolean {
-        return this.db.chain.get("currencies", []).last().value().data.findIndex(curr => curr.name === currency) > -1
+        return this.db.chain.get("currencies", []).last().value().data?.findIndex(curr => curr.name === currency) > -1
     }
 
     public getRate(currency: string): number {
