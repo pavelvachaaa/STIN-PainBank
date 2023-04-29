@@ -22,8 +22,8 @@ class CurrencyService {
         this.currencyRepo = currencyRepo
     }
 
-    getLastList = () => {
-        return this.currencyRepo.getLast();
+    getLastList = async () => {
+        return await this.currencyRepo.getLast();
     }
 
     private txtToJson(): void {

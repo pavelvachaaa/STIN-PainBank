@@ -77,7 +77,7 @@ class AccountService {
             this.accountRepo.withdraw(dto);
             this.paymentRepo.save({ amount: dto.amount, currency: dto.currency, timestamp: Date.now(), email: dto.email, type: "OUT" });
         } else {
-            const currencies = this.currencyRepo.getLast();
+            const currencies = await this.currencyRepo.getLast();
             if (currencies.length <= 0) {
                 throw new AppError({
                     description: "Nemohli jsme uskutečnit platbu, omlouváme se, zkuste to znovu později.",

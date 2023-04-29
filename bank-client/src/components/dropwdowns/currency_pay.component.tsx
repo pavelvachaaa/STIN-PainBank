@@ -1,14 +1,12 @@
 "use client"
+import { apiCall } from "@/services/api.service";
 import { IApiResponse, ICurrency } from "@/types/interfaces";
 import { Select, TextInput } from "flowbite-react";
 import { useCallback, useEffect, useState } from "react";
 
-
 const getData = async (): Promise<ICurrency[]> => {
-    const res = await fetch("http://localhost:4000/api/v1/currencies")
-    const data = await res.json() as IApiResponse;
-
-    return data?.data ?? [];
+    const res = await apiCall({ endpoint: "/currencies", method: "GET" })
+    return res?.data ?? [];
 }
 
 export default function CurrencyPay({ onDropdownChange, onAmountChange, currency = "CZK" }: { onDropdownChange: any, onAmountChange: any, currency: string }) {

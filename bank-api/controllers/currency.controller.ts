@@ -13,8 +13,8 @@ class CurrencyController {
         this.currencyService = currencyService;
     }
 
-    getLastList(_req: Request, res: Response) {
-        const result = this.currencyService.getLastList();
+    async getLastList(_req: Request, res: Response) {
+        const result = await this.currencyService.getLastList();
         return new ApiResponse({ data: result, message: "Vracíme kurzovní lístek" }).send(res);
     }
 }

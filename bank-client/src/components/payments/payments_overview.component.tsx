@@ -1,16 +1,18 @@
 import PaymentItem from "./paymen_item.component";
 import IPayment from "@/types/interfaces";
 import { getPayments } from "@/services/payment.service";
+import { getServerSession } from "next-auth";
 
 
 async function getData(): Promise<IPayment[]> {
+    const session = await getServerSession();
     let data;
     try {
-        data = await getPayments("pavel@tul.cz");
+        data = await getPayments(session?.user?.email ?? "");
     } catch (e) {
         return [];
     }
-    
+
     return data.data;
 }
 

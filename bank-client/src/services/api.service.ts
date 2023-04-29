@@ -4,6 +4,7 @@ import { getSession } from "next-auth/react";
 const url = process.env.API_URL ?? "http://localhost:4000/api/v1";
 
 export const apiCall = async ({ endpoint = "", data = {}, method = "POST" }: { endpoint: string, data?: any, method?: string }) => {
+
     let session;
     try {
         session = await getSession()

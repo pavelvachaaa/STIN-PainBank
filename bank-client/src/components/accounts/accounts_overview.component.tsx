@@ -8,11 +8,13 @@ import OpenAccount from "./open_account.component";
 import LoadingCards from "../loading/loading.cards";
 import { ModalContext } from "@/app/context/ModalContext";
 import { AccountContext } from "@/app/context/AccountContext";
+import { getSession } from "next-auth/react";
 
 async function getData(): Promise<IAccount[]> {
+    const session = await getSession();
     let data;
     try {
-        data = await getAccounts("pavel@tul.cz");
+        data = await getAccounts(session?.user?.email ?? "");
     } catch (e) {
         return [];
     }
@@ -21,7 +23,7 @@ async function getData(): Promise<IAccount[]> {
 
 export default function AccountsOverview() {
     const [isLoading, setLoading] = useState(false)
-    const {accounts, setAccounts } = useContext(AccountContext);
+    const { accounts, setAccounts } = useContext(AccountContext);
 
     useEffect(() => {
         setLoading(true)

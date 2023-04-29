@@ -18,8 +18,8 @@ export const authOptions: NextAuthOptions = {
 
                 return {
                     id: res.data?.user?.id ?? "",
-                    name: res.data?.name ?? "Pavel Vácha",
-                    email: res.data?.user.email,
+                    name: res.data?.user?.name ?? "Pavel Vácha",
+                    email: res.data?.user?.email,
                     accessToken: res.data?.token, // Tohle se vrátí jen v getSession v serverSession to je v image :D TODO: Možná to nějak půjde změnit
                     image: res.data?.token,
                     role: "ADMIN"
