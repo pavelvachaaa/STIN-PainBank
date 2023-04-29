@@ -1,7 +1,7 @@
-import IAuthRequest from "../models/IAuthRequest.js";
-import ICurrency from "../models/ICurrency.js"
-import IPayment from "../models/IPayment.js";
-import IUser from "../models/IUser.js"
+import IAuthRequest from "./models/IAuthRequest.js";
+import ICurrency from "./models/ICurrency.js"
+import IPayment from "./models/IPayment.js";
+import IUser from "./models/IUser.js"
 export default class MockData {
 
     static users: IUser[] = [
