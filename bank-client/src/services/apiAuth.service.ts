@@ -1,13 +1,16 @@
 import { IApiResponse } from "@/types/interfaces";
-import { getSession } from "next-auth/react";
-
+import { getServerSession } from "next-auth";
 const url = process.env.API_URL ?? "http://localhost:4000/api/v1";
 
-export const apiCall = async ({ endpoint = "", data = {}, method = "POST" }: { endpoint: string, data?: any, method?: string }) => {
-
+/**
+ * Vznikla tato druhá separátní metoda. Jakmile je uživatel odhlášený a zároven je tohle někde includnutý chybuje to
+ * Respektive getServerSession chybuje
+ * @returns 
+ */
+export const authApiCall = async ({ endpoint = "", data = {}, method = "POST" }: { endpoint: string, data?: any, method?: string }) => {
     let session;
     try {
-        session = await getSession()
+        session = await getServerSession()
     } catch (e) {
         throw new Error("Nemohli jsme vás autorizovat");
     }
@@ -18,10 +21,9 @@ export const apiCall = async ({ endpoint = "", data = {}, method = "POST" }: { e
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            "Authorization": `Bearer ${session?.user?.accessToken}` // Je zde user.image, protože protože z nějakého důvodu to nebere next-auth-d.ts
-
+            "Authorization": `Bearer ${session?.user?.image}` // Je zde user.image, protože protože z nějakého důvodu to nebere next-auth-d.ts
         },
-        body: method == "POST" ? JSON.stringify(data) : null
+        body: JSON.stringify(data)
     })
 
     const response = await res.json() as IApiResponse;
@@ -32,5 +34,3 @@ export const apiCall = async ({ endpoint = "", data = {}, method = "POST" }: { e
 
     return response;
 }
-
-

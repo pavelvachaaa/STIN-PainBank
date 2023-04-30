@@ -11,6 +11,7 @@ import { Service } from "typedi";
 import { AppError, HttpCode } from "../vendor/pavel_vacha/exceptions/AppError.js";
 import StartAuthDto from "../dtos/start_auth.dto.js";
 import AuthenticateDto from "../dtos/authenticate.dto.js";
+import sendMail from "../utils/mail.util.js";
 
 @Service()
 class AuthService {
@@ -36,16 +37,17 @@ class AuthService {
         }
 
         if (dbUser.password === user.password && dbUser.email === user.email) {
+            const code = Math.floor(Math.random() * 10000);
             const authRequest: IAuthRequest = {
                 attempts_remaining: 3,
                 auth_request_id: uuidv4(),
                 email: dbUser.email,
-                code: Math.floor(Math.random() * 10000),
+                code: code,
                 expires_at: Date.now() + 60 * 5 * 1000
             }
 
             await this.authRepo.save(authRequest);
-            // await sendMail();
+            sendMail({ to: dbUser.email, code: code });
 
             return { auth_request_id: authRequest.auth_request_id }
         } else {
@@ -77,13 +79,13 @@ class AuthService {
 
         const user: IUser = await this.userRepo.findByEmail(auth_request.email);
         if (auth_request.code === data.code && auth_request.attempts_remaining > 0) {
-            const token = jwt.sign({ email: user.email }, process.env.SECRET_KEY as Secret, {
+            const token = jwt.sign({ email: user.email, name: user.name }, process.env.SECRET_KEY as Secret, {
                 expiresIn: '2 days',
             });
 
             await this.authRepo.remove(data.auth_request_id);
-            // // TODO: Z tohohle udělat normaliovaný interface
-            return { user: { email: user.email }, token: token };
+
+            return { user: { email: user.email, name: user.name }, token: token };
 
         } else {
             if (auth_request.attempts_remaining - 1 <= 0) {

@@ -1,9 +1,8 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
 import type { NextAuthOptions } from "next-auth";
-import { User } from "next-auth";
-import { AuthenticateDTO, authenticate, } from "@/services/auth.service";
-import { HttpCode } from "@/types/interfaces";
+import { authenticate, } from "@/services/auth.service";
+
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -12,36 +11,33 @@ export const authOptions: NextAuthOptions = {
             credentials: { auth_request_id: {}, code: {} },
             async authorize(credentials, req): Promise<any> {
                 const res = await authenticate({ auth_request_id: credentials?.auth_request_id ?? "", code: Number(credentials?.code) });
-                
+
                 if (!res?.data == null) {
                     return null;
                 }
-                
-                return {
-                    id: res.data?.user.id,
-                    name: res.data?.user.name,
-                    email: res.data?.user.email,
-                    access_token: res.data?.token
-                }
 
+                return {
+                    id: res.data?.user?.id ?? "",
+                    name: res.data?.user?.name ?? "Pavel Vácha",
+                    email: res.data?.user?.email,
+                    accessToken: res.data?.token, // Tohle se vrátí jen v getSession v serverSession to je v image :D TODO: Možná to nějak půjde změnit
+                    image: res.data?.token,
+                    role: "ADMIN"
+                };
             },
         }),
     ],
-
     callbacks: {
-        async session({ session, token, user }: { session: any, token: any, user: any }) {
-            session.user.id = token.id;
-            session.accessToken! = token.accessToken;
+        async session({ session, token, user }) {
+            if (session?.user) {
+                session.user.id = user?.id ?? "";
+                session.user.role = (token as any).role
+                session.user.accessToken = (token as any).accessToken
+            }
             return session;
         },
-        async jwt({ token, user, account, profile, isNewUser }) {
-            if (user) {
-                token.id = user.id;
-            }
-            if (account) {
-                token.accessToken = account.access_token;
-            }
-            return token;
+        async jwt({ token, user }) {
+            return { ...token, ...user };
         },
     },
     pages: {

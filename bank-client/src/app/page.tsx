@@ -1,9 +1,6 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import { redirect } from 'next/navigation'
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home() {  
+export default function Home() {
+  console.log(process.env.NEXTAUTH_URL)
   redirect("/login")
 }

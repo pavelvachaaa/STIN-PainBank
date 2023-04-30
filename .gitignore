@@ -9,7 +9,7 @@ lib-cov
 *.pid
 *.gz
 *.swp
-
+.env*
 pids
 logs
 results
@@ -80,3 +80,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/bank-api/data/db.json
+/bank-api/data/currencies/

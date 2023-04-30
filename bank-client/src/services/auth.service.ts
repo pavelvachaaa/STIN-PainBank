@@ -1,5 +1,5 @@
 import { IApiResponse } from "@/types/interfaces";
-import apiCall from "./api.service";
+import { apiCall } from "./api.service";
 
 export interface CreateAccountDTO {
     name: string;
