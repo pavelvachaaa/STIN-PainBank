@@ -1,5 +1,4 @@
 ./bank-client/vscode
-
 lib-cov
 *.seed
 *.log
@@ -81,5 +80,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/bank-api/data/db.json
-/bank-api/data/currencies/
+/bank-api/data/
+
+bank-api\data
+bank-api/data/db.json

@@ -27,7 +27,7 @@ class PaymentController {
         const { email }: { email: string } = _req.body;
         const result = this.paymentService.getByEmail(email);
 
-        return new ApiResponse({ message: "Úspěšně jsme vás přihlásili", data: result }).send(res);
+        return new ApiResponse({ message: "Zde jsou vaše platby", data: result }).send(res);
     }
 
 }

@@ -5,6 +5,7 @@ import { DatabaseService } from "../services/database.service.js";
 import { saveFile, readFile } from "../utils/file.util.js";
 import CurrencyStorage from "../utils/currency.storage.js";
 import IExchangeRate from "../models/IExchangeRate.js";
+import { AppError, HttpCode } from "../vendor/pavel_vacha/exceptions/AppError.js";
 
 @Service()
 export class CurrencyRepository implements ICurrencyRepository {
@@ -12,8 +13,8 @@ export class CurrencyRepository implements ICurrencyRepository {
     constructor(private db: DatabaseService, private currencyStorage: CurrencyStorage) {
     }
 
-    public save() {
-        throw new Error("Method not implemented.");
+    public async save(exchangeRate: IExchangeRate): Promise<void> {
+        await this.db.push("currencies", [exchangeRate]);
     }
 
 
@@ -23,26 +24,13 @@ export class CurrencyRepository implements ICurrencyRepository {
 
         if (data && this.isCurrent(exchangeRate)) {
             return data;
-        } else if (data && !this.isCurrent) {
-
-        } else if (!data) {
-            // Storage musí parsnout vrátit, já tady uložím, vrátím klientovi atd....
-        }
-
-        if (!data) {
-            const currTxt = "AHOJ";
-            // const currTxt = await this.fetchCurrencies();
-            this.currencyStorage.store(currTxt);
-
-            return []
         } else {
-            return data;
+            const newExchangeRate = await this.currencyStorage.getLast();
+            await this.save(newExchangeRate);
+            await this.db.write();
+            return newExchangeRate.data;
         }
 
-    }
-
-    private async fetchCurrencies() {
-        return await fetch("https://www.cnb.cz/cs/financni_trhy/devizovy_trh/kurzy_devizoveho_trhu/denni_kurz.txt").then((res) => res.text());
     }
 
     private isCurrent(exchangeRate: IExchangeRate): boolean {
