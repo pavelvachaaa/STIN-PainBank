@@ -6,7 +6,7 @@ const jestConfig: JestConfigWithTsJest = {
         '^(\\.{1,2}/.*)\\.js$': '$1',
 
     },
-    //modulePathIgnorePatterns: ["<rootDir>/dist/__tests__"],
+    testPathIgnorePatterns: ["<rootDir>/dist/", "<rootDir>/MockData.ts"],
     transform: {
         '^.+\\.tsx?$': [
             'ts-jest',

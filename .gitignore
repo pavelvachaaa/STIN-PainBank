@@ -80,6 +80,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-bank-api/data/
-data/**/*
-data/
+/bank-api/data/
+
+bank-api\data
+bank-api/data/db.json
