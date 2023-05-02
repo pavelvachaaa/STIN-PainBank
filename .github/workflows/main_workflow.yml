@@ -35,6 +35,7 @@ jobs:
        uses: codecov/codecov-action@v3
 
    build-job:
+      needs: [test-job]
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v3
