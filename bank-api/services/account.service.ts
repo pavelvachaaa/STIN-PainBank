@@ -78,6 +78,10 @@ class AccountService {
             this.paymentRepo.save({ amount: dto.amount, currency: dto.currency, timestamp: Date.now(), email: dto.email, type: "OUT" });
         } else {
             const currencies = await this.currencyRepo.getLast();
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
             if (currencies.length <= 0) {
                 throw new AppError({
                     description: "Nemohli jsme uskutečnit platbu, omlouváme se, zkuste to znovu později.",
@@ -87,7 +91,10 @@ class AccountService {
             }
 
             const availableAccounts = accounts.filter((acc) => acc.balance >= exchangeMoney(dto.currency, acc.currency, dto.amount, currencies));
+<<<<<<< HEAD
             console.log(availableAccounts);
+=======
+>>>>>>> main
             if (availableAccounts.length <= 0) {
                 throw new AppError({
                     description: "Nemáte dostatek prostředků na žádným z Vašich účtů",
@@ -99,14 +106,20 @@ class AccountService {
             const correctCurrency = availableAccounts[0].currency;
             // TODO: PROMYSLET CO ULOŽIT DO CURRENCY
             dto.amount = exchangeMoney(dto.currency, correctCurrency, dto.amount, currencies);
+<<<<<<< HEAD
             dto.currency = correctCurrency
+=======
+>>>>>>> main
             this.accountRepo.withdraw(dto);
             /// Zjednodušit save do jednoho callu -> pozor na ammount a jakou currency tam dávám
             this.paymentRepo.save({ amount: dto.amount, currency: correctCurrency, timestamp: Date.now(), email: dto.email, type: "OUT" });
         }
 
+<<<<<<< HEAD
         return dto;
 
+=======
+>>>>>>> main
         /// Zkusit vrátit info o tom, jestli to proběhlo. nebo vrátit ten payment nebo účet, asi podle frontendu
         /// Nebo true a pak to na klientovi odečíst
 
@@ -157,6 +170,7 @@ class AccountService {
         }
 
         this.paymentRepo.save({ amount: dto.amount, currency: dto.currency, timestamp: Date.now(), email: dto.email, type: "IN" });
+<<<<<<< HEAD
 
         return dto;
     }
@@ -164,6 +178,20 @@ class AccountService {
     /// TODO: error checky atd, user exists ... 
     getAccounts = async (email: string) => {
         return await this.accountRepo.getUserAccounts(email);
+=======
+    }
+
+    getHistory = () => {
+        throw Error("Not implemented")
+    }
+
+    getAccounts = () => {
+        throw Error("Not implemented")
+    }
+
+    closeAccount = () => {
+        throw Error("Not implemented")
+>>>>>>> main
     }
 
 }

@@ -6,14 +6,18 @@ import * as fs from 'fs';
 import ICurrency from "../models/ICurrency.js";
 import { Service, } from "typedi";
 import IExchangeRate from "../models/IExchangeRate.js";
+<<<<<<< HEAD
 import ICurrencyRepository from "../interfaces/CurrencyRepository.interface.js";
 import CurrencyRepository from "../repositories/currency.repository.js";
+=======
+>>>>>>> main
 
 @Service()
 class CurrencyService {
 
     private userRepo: IUserRepository;
     private paymentRepo: IPaymentRepository;
+<<<<<<< HEAD
     private currencyRepo: ICurrencyRepository;
 
     constructor(userRepo: UserRepository, paymentRepo: PaymentRepository, currencyRepo: CurrencyRepository) { // and here
@@ -24,6 +28,12 @@ class CurrencyService {
 
     getLastList = async () => {
         return await this.currencyRepo.getLast();
+=======
+
+    constructor(userRepo: UserRepository, paymentRepo: PaymentRepository) { // and here
+        this.userRepo = userRepo;
+        this.paymentRepo = paymentRepo
+>>>>>>> main
     }
 
     private txtToJson(): void {

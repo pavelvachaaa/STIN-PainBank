@@ -13,7 +13,11 @@ export class PaymentRepository implements IPaymentRepository {
     }
 
     getByEmail(email: string): IPayment[] {
+<<<<<<< HEAD
         return this.db.chain.get("payments", []).filter({ email: email }).reverse().value();
+=======
+        return this.db.chain.get("payments", []).filter({ email: email }).value();
+>>>>>>> main
     }
 
 }

@@ -1,6 +1,10 @@
 import ICurrency from "../../models/ICurrency.js";
 import generateAccountNumber, { exchangeMoney } from "../../utils/account.util.js";
+<<<<<<< HEAD
 import MockData from "../../MockData.js";
+=======
+import MockData from "../../data/MockData.js";
+>>>>>>> main
 describe("Account util tests", () => {
 
     describe('generateAccountNumber', () => {

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 ./bank-client/vscode
+=======
+>>>>>>> main
 lib-cov
 *.seed
 *.log
@@ -8,6 +11,7 @@ lib-cov
 *.pid
 *.gz
 *.swp
+<<<<<<< HEAD
 .env*
 pids
 logs
@@ -22,6 +26,22 @@ coverage
 
 # API keys and secrets
 
+=======
+
+pids
+logs
+results
+tmp
+
+# Build
+public/css/main.css
+
+# Coverage reports
+coverage
+
+# API keys and secrets
+
+>>>>>>> main
 
 # Dependency directory
 node_modules
@@ -42,6 +62,7 @@ dist/**/*
 yarn.lock
 
 dist
+<<<<<<< HEAD
 .env
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
@@ -84,3 +105,6 @@ next-env.d.ts
 
 bank-api\data
 bank-api/data/db.json
+=======
+.env
+>>>>>>> main

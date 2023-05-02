@@ -14,7 +14,11 @@ export class AccountRepository implements IAccountRepository {
     constructor(private db: DatabaseService) {
     }
 
+<<<<<<< HEAD
     async open(dto: OpenAccountDTO): Promise<IAccount> {
+=======
+    async open(dto: OpenAccountDTO): Promise<boolean> {
+>>>>>>> main
         if ((await this.getUserAccounts(dto.email)).find((account) => account.currency === dto.currency)) {
             throw new AppError({
                 description: "Pro tuto měnu již účet máte",
@@ -28,7 +32,11 @@ export class AccountRepository implements IAccountRepository {
 
         await this.db.write();
 
+<<<<<<< HEAD
         return acc;
+=======
+        return res > 0;
+>>>>>>> main
     }
 
     async getUserAccounts(email: string): Promise<IAccount[]> {
@@ -37,12 +45,17 @@ export class AccountRepository implements IAccountRepository {
 
     async withdraw(dto: WithdrawDto) {
         let account = this.db.chain.get("users").find({ email: dto.email }).get("accounts").find({ currency: dto.currency }).value();
+<<<<<<< HEAD
         if(!account){
             throw new AppError({ description: "Nemohli jsme najít účet, ze kterého vybrat prostředky", httpCode: HttpCode.BAD_REQUEST });
         }
 
         if (account?.balance < dto.amount) {
             throw new AppError({ description: "Nedostatečné prostředky", httpCode: HttpCode.BAD_REQUEST, });
+=======
+        if (account.balance < dto.amount) {
+            throw new AppError({ description: "Nedostatečné prostředky", httpCode: HttpCode.BAD_REQUEST });
+>>>>>>> main
         } else {
             account.balance -= dto.amount;
         }

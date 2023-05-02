@@ -1,7 +1,11 @@
 import Database from "../../vendor/pavel_vacha/core/database.js";
 import AuthRequestRepository, { UserRepository } from "../../repositories/user.repository.js";
 import { expect, jest, test } from '@jest/globals';
+<<<<<<< HEAD
 import MockData from "../../MockData.js";
+=======
+import MockData from "../../data/MockData.js";
+>>>>>>> main
 import { AppError } from "../../vendor/pavel_vacha/exceptions/AppError.js";
 import CreateUserDto from "../../dtos/create_user.dto.js";
 

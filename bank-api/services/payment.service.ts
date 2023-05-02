@@ -9,7 +9,10 @@ import { Service, Inject, Container } from "typedi";
 import { exchangeMoney } from "../utils/account.util.js";
 import ICurrencyRepository from "../interfaces/CurrencyRepository.interface.js";
 import CurrencyRepository from "../repositories/currency.repository.js";
+<<<<<<< HEAD
 import IPayment from "../models/IPayment.js";
+=======
+>>>>>>> main
 
 @Service()
 class PaymentService {
@@ -26,11 +29,14 @@ class PaymentService {
         this.currencyRepo = currencyRepo;
     }
 
+<<<<<<< HEAD
 
     public getByEmail(email: string): IPayment[] {
         return this.paymentRepo.getByEmail(email);
     }
 
+=======
+>>>>>>> main
 }
 
 export default PaymentService;

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import MockData from "../../MockData.js";
+=======
+import MockData from "../../data/MockData.js";
+>>>>>>> main
 import IPayment from "../../models/IPayment.js";
 import PaymentRepository from "../../repositories/payment.repository.js";
 import Database from "../../vendor/pavel_vacha/core/database.js";

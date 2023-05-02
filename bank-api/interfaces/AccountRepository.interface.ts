@@ -5,7 +5,11 @@ import IAccount from "../models/IAccount.js";
 
 export default interface IAccountRepository {
 
+<<<<<<< HEAD
     open(dto: OpenAccountDTO): Promise<IAccount>;
+=======
+    open(dto: OpenAccountDTO): Promise<boolean>;
+>>>>>>> main
     withdraw(dto: WithdrawDto): any;
     deposit(dto: DepositDto): any;
     close(email: string, account_id: string): any

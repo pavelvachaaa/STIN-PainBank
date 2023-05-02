@@ -1,6 +1,10 @@
 {
   "exclude": [
+<<<<<<< HEAD
     "./dist/**/*",
+=======
+    "./dist",
+>>>>>>> main
     "./data/**/*"
   ],
   "ts-node": {

@@ -50,6 +50,7 @@ class AccountController {
 
         return new ApiResponse({ data: result, message: "Úspěšně jste vybrali peníze z účtu" }).send(res);
     }
+<<<<<<< HEAD
     async getUserAccounts(_req: CustomRequest, res: Response) {
         const { email }: { email: string } = _req.body;
         if (_req.userData.email !== email) {
@@ -65,6 +66,8 @@ class AccountController {
 
         return new ApiResponse({ data: result, message: "Vracíme váše účty" }).send(res);
     }
+=======
+>>>>>>> main
 
     async deposit(_req: CustomRequest, res: Response) {
         ///TODO: Check resources -> obecná metoda

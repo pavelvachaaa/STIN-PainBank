@@ -37,6 +37,36 @@ class UserService {
     };
 }
 
+<<<<<<< HEAD
 
+=======
+// function sendMail() {
+
+//     var transporter = nodemailer.createTransport({
+//         host: process.env.SEND_IN_BLUE_HOST,
+//         port: process.env.SEND_IN_BLUE_PORT,
+//         secure: false,
+//         auth: {
+//             user: process.env.SEND_IN_BLUE_USER,
+//             pass: process.env.SEND_IN_BLUE_PASS
+//         },
+//     } as TransportOptions | Transport<any>);
+
+//     var mailOptions = {
+//         from: 'pavel.vacha@tul.cz',
+//         to: 'pavel.vachaaa@gmail.com',
+//         subject: 'PainBank - 2FA',
+//         text: 'Zasíláme vám kod pro dvoufázové ověření'
+//     };
+
+//     transporter.sendMail(mailOptions, function (error, info) {
+//         if (error) {
+//             console.log(error);
+//         } else {
+//             console.log('Email sent: ' + info.response);
+//         }
+//     });
+// }
+>>>>>>> main
 
 export default UserService;

@@ -11,7 +11,10 @@ import { Service } from "typedi";
 import { AppError, HttpCode } from "../vendor/pavel_vacha/exceptions/AppError.js";
 import StartAuthDto from "../dtos/start_auth.dto.js";
 import AuthenticateDto from "../dtos/authenticate.dto.js";
+<<<<<<< HEAD
 import sendMail from "../utils/mail.util.js";
+=======
+>>>>>>> main
 
 @Service()
 class AuthService {
@@ -37,17 +40,28 @@ class AuthService {
         }
 
         if (dbUser.password === user.password && dbUser.email === user.email) {
+<<<<<<< HEAD
             const code = Math.floor(Math.random() * 10000);
+=======
+>>>>>>> main
             const authRequest: IAuthRequest = {
                 attempts_remaining: 3,
                 auth_request_id: uuidv4(),
                 email: dbUser.email,
+<<<<<<< HEAD
                 code: code,
+=======
+                code: Math.floor(Math.random() * 10000),
+>>>>>>> main
                 expires_at: Date.now() + 60 * 5 * 1000
             }
 
             await this.authRepo.save(authRequest);
+<<<<<<< HEAD
             sendMail({ to: dbUser.email, code: code });
+=======
+            // await sendMail();
+>>>>>>> main
 
             return { auth_request_id: authRequest.auth_request_id }
         } else {
@@ -79,13 +93,22 @@ class AuthService {
 
         const user: IUser = await this.userRepo.findByEmail(auth_request.email);
         if (auth_request.code === data.code && auth_request.attempts_remaining > 0) {
+<<<<<<< HEAD
             const token = jwt.sign({ email: user.email, name: user.name }, process.env.SECRET_KEY as Secret, {
+=======
+            const token = jwt.sign({ email: user.email }, process.env.SECRET_KEY as Secret, {
+>>>>>>> main
                 expiresIn: '2 days',
             });
 
             await this.authRepo.remove(data.auth_request_id);
+<<<<<<< HEAD
 
             return { user: { email: user.email, name: user.name }, token: token };
+=======
+            // // TODO: Z tohohle udělat normaliovaný interface
+            return { user: { email: user.email }, token: token };
+>>>>>>> main
 
         } else {
             if (auth_request.attempts_remaining - 1 <= 0) {

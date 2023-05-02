@@ -3,7 +3,11 @@ import AuthRequestRepository from "../../repositories/auth_requests.repository.j
 import IAuthRequest from "../../models/IAuthRequest.js";
 import { expect, jest, test } from '@jest/globals';
 import { AppError } from "../../vendor/pavel_vacha/exceptions/AppError.js";
+<<<<<<< HEAD
 import MockData from "../../MockData.js";
+=======
+import MockData from "../../data/MockData.js";
+>>>>>>> main
 
 let database: Database;
 let repository: AuthRequestRepository;
