@@ -23,7 +23,7 @@ services:
 
   bank-client:
     environment:
-      - NEXTAUTH_SECRET
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
       - NEXTAUTH_URL=https://stin.pavel-vacha.cz/
       - API_URL=https://pavel-vacha.cz/api/v1
     image: dockerreg.pavel-vacha.cz/tul/bank-client:latest
