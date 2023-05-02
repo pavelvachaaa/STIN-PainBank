@@ -42,7 +42,7 @@ jobs:
       - name: Login to private registry
         run: docker login -u ${{secrets.REGISTRY_USERNAME}} -p ${{secrets.REGISTRY_PASSWORD}} dockerreg.pavel-vacha.cz
       - name: Build the Docker image
-        run: docker compose build
+        run: NEXTAUTH_SECRET=${{secrets.NEXTAUTH_SECRET}} docker compose build
       - name: Push to private registry
         run: docker compose push
    deploy-job:
