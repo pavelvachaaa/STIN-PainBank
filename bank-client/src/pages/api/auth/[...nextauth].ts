@@ -3,7 +3,6 @@ import NextAuth from "next-auth";
 import type { NextAuthOptions } from "next-auth";
 import { authenticate, } from "@/services/auth.service";
 
-
 export const authOptions: NextAuthOptions = {
     providers: [
         CredentialsProvider({
@@ -37,6 +36,7 @@ export const authOptions: NextAuthOptions = {
             return session;
         },
         async jwt({ token, user }) {
+            console.log("Token:", token, "User:", user)
             return { ...token, ...user };
         },
     },
@@ -46,5 +46,6 @@ export const authOptions: NextAuthOptions = {
     secret: process.env.NEXTAUTH_SECRET,
 
 };
+
 
 export default NextAuth(authOptions);

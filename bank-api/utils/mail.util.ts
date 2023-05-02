@@ -14,7 +14,10 @@ const sendMail = ({ to, code }: { to: string, code: number }) => {
     } as TransportOptions | Transport<any>);
 
     var mailOptions = {
-        from: 'pavel.vacha@tul.cz',
+        from: {
+            name: 'PainBank - MTI/STIN',
+            address: 'pavel.vacha@tul.cz'
+        },
         to: to,
         subject: 'PainBank - 2FA',
         text: `Zasíláme vám kod pro dvoufázové ověření: ${code}`

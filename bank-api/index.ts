@@ -22,7 +22,7 @@ const port = process.env.PORT ?? 4000;
 const prefix = process.env.API_PREFIX ?? "/api/v1";
 
 app.use(cors({
-    origin: 'http://localhost:3000', credentials: true
+    origin: ["https://stin.pavel-vacha.cz",'http://localhost:3000'], credentials: true
 }));
 
 
