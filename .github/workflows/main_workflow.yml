@@ -70,4 +70,4 @@ jobs:
             docker login -u ${{secrets.REGISTRY_USERNAME}} -p ${{secrets.REGISTRY_PASSWORD}} dockerreg.pavel-vacha.cz
             cd /tmp
             docker compose pull
-            SECRET_KEY=${{secrets.SECRET_KEY}} SEND_IN_BLUE_PASS=${{secrets.SEND_IN_BLUE_PASS}} NEXTAUTH_SECRET=${{secrets.NEXTAUTH_SECRET}} docker compose up -d --no-build
+            HOST=stin.pavel-vacha.cz SECRET_KEY=${{secrets.SECRET_KEY}} SEND_IN_BLUE_PASS=${{secrets.SEND_IN_BLUE_PASS}} NEXTAUTH_SECRET=${{secrets.NEXTAUTH_SECRET}} docker compose up -d --no-build
