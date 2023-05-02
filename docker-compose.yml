@@ -1,20 +1,40 @@
 # todo: auto remove, name, etc..
 services:
   bank-api:
+    environment:
+      - PORT=4000
+      - API_PREFIX=/api/v1
+      - SECRET_KEY=${SECRET_KEY}
+      - SEND_IN_BLUE_HOST=smtp.tul.cz
+      - SEND_IN_BLUE_USER=pavel.vacha
+      - SEND_IN_BLUE_PASS=${SEND_IN_BLUE_PASS}
+      - SEND_IN_BLUE_PORT=587
+      - DATA_PATH=./data
+      - CNB_URL=https://www.cnb.cz/cs/financni_trhy/devizovy_trh/kurzy_devizoveho_trhu/denni_kurz.txt
+    image: dockerreg.pavel-vacha.cz/tul/bank-api:latest
+
     build:
       context: ./bank-api
     ports:
-      - "4001:4000"
+      - "4000:4000"
     networks:
-      - dev
+      - bank
+    restart: always
 
   bank-client:
+    environment:
+      - NEXTAUTH_SECRET
+      - NEXTAUTH_URL=https://stin.pavel-vacha.cz/
+      - API_URL=https://pavel-vacha.cz/api/v1
+    image: dockerreg.pavel-vacha.cz/tul/bank-client:latest
     build:
       context: ./bank-client
     ports:
-      - "3001:3000"
+      - "3000:3000"
     networks:
-      - dev
+      - bank
+    restart: always
+
 networks:
-  dev:
+  bank:
     driver: bridge

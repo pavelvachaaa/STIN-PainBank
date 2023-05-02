@@ -29,6 +29,10 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
+# Předpokládám, že tyhle dvě věci zůstanou fixní at se deje co se deje
+ENV NEXTAUTH_URL https://stin.pavel-vacha.cz 
+ENV API_URL https://pavel-vacha.cz/api/v1
+
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
