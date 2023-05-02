@@ -4,7 +4,7 @@ services:
     environment:
       - PORT=4000
       - API_PREFIX=/api/v1
-      - SECRET_KEY=${SECRET_KEY}
+      - SECRET_KEY=${NEXTAUTH_SECRET}
       - SEND_IN_BLUE_HOST=smtp.tul.cz
       - SEND_IN_BLUE_USER=pavel.vacha
       - SEND_IN_BLUE_PASS=${SEND_IN_BLUE_PASS}
