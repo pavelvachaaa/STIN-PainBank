@@ -49,6 +49,5 @@ USER nextjs
 EXPOSE 3000
 
 ENV PORT 3000
-ENV HOST stin.pavel-vacha.cz
 
 CMD ["node", "server.js"]
