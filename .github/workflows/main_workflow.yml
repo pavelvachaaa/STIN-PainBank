@@ -45,6 +45,7 @@ jobs:
       - name: Push to private registry
         run: docker compose push
    deploy-job:
+    needs: [test-job, build-job]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
