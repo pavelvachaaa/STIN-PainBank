@@ -19,6 +19,7 @@ class CurrencyParser {
             exchangeRate.data.push({ country: splitLine[0], full_name: splitLine[1], amount: parseInt(splitLine[2]), name: splitLine[3], rate: parseFloat(splitLine[4].replace(",", ".")) })
         }
 
+        exchangeRate.data.push({ amount: 1, country: "Česká Republika", full_name: "Česká koruna", name: "CZK", rate: 1 })
         return exchangeRate;
     }
 }
@@ -57,6 +58,11 @@ export default class CurrencyStorage {
 
     private async fetchCurrencies() {
         return await fetch(process.env.CNB_URL as string).then((res) => res.text());
+    }
+
+    public startCron() {
+        console.log("MORE")
+        this.fetchCurrencies().then((data) => this.store(data))
     }
 
 }

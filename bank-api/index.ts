@@ -14,7 +14,9 @@ import { errorHandler } from "./vendor/pavel_vacha/exceptions/ErrorHandler.js";
 import { ApiResponse } from './vendor/pavel_vacha/interfaces/ApiResponse.interface.js';
 import { auth } from './middlewares/auth.middleware.js';
 import cors from "cors";
-
+import cron from "node-cron";
+import CurrencyStorage from './utils/currency.storage.js';
+import { Container } from 'typedi';
 dotenv.config();
 
 export let app: Express = express();
@@ -22,7 +24,7 @@ const port = process.env.PORT ?? 4000;
 const prefix = process.env.API_PREFIX ?? "/api/v1";
 
 app.use(cors({
-    origin: ["https://stin.pavel-vacha.cz",'http://localhost:3000'], credentials: true
+    origin: ["https://stin.pavel-vacha.cz", 'http://localhost:3000'], credentials: true
 }));
 
 
@@ -56,6 +58,14 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     errorHandler.handleError(err, res);
 });
+
+
+// Rozběhne cron, který se spouští každý den ve 14:30:30
+const currencyStorage = Container.get(CurrencyStorage);
+cron.schedule("30 30 14 * * *", () => {
+    currencyStorage.startCron();
+});
+
 
 server.listen(port, () => {
     console.log(`⚡️[server]: Spustili jsme server na http://localhost:${port}`);
