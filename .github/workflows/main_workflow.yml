@@ -1,0 +1,73 @@
+name: "CI/CD Workflow"
+on:
+   push:
+     branches: [ "main", "dev" ]
+   pull_request:
+     branches: [ "main", "dev" ]
+
+jobs:
+   test-job:
+     runs-on: ubuntu-latest
+     defaults:
+      run:
+        working-directory: ./bank-api
+    
+     steps:
+     - name: Checkout
+       uses: actions/checkout@v3
+
+     - name: Use Node 18.16.0
+       uses: actions/setup-node@v3
+       with:
+         node-version: '18.16.0'
+
+     - name: Install dependencies
+       run: npm i
+     - name: create env file
+       run: |
+        touch .env
+        echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
+
+     - name: Run code coverage test
+       run: npm run test
+
+     - name: Upload coverage reports to Codecov
+       uses: codecov/codecov-action@v3
+
+   build-job:
+      needs: [test-job]
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v3
+      - name: Login to private registry
+        run: docker login -u ${{secrets.REGISTRY_USERNAME}} -p ${{secrets.REGISTRY_PASSWORD}} dockerreg.pavel-vacha.cz
+      - name: Build the Docker image
+        run: docker compose build
+      - name: Push to private registry
+        run: docker compose push
+   deploy-job:
+    needs: [test-job, build-job]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Copy docker-compose.yml
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          source: docker-compose.yml
+          target: /tmp   
+      - name: SSH to server and run docker compose
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
+            docker login -u ${{secrets.REGISTRY_USERNAME}} -p ${{secrets.REGISTRY_PASSWORD}} dockerreg.pavel-vacha.cz
+            cd /tmp
+            docker compose pull
+            HOST=https://stin.pavel-vacha.cz  SECRET_KEY=${{secrets.SECRET_KEY}} SEND_IN_BLUE_PASS=${{secrets.SEND_IN_BLUE_PASS}} NEXTAUTH_SECRET=${{secrets.NEXTAUTH_SECRET}} docker compose up -d --no-build

@@ -7,7 +7,7 @@ const Router = express.Router();
 const paymentController = Container.get(PaymentController);
 
 /// TODO: Možná bude stačit jenom servisa
-Router.post('/history', auth, (req: Request, res: Response) => paymentController.history(req as CustomRequest, res));
+Router.post('/history', auth, (req: Request, res: Response) => paymentController.getByEmail(req as CustomRequest, res));
 
 
 

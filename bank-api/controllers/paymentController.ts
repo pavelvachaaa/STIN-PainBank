@@ -5,6 +5,7 @@ import { CustomRequest } from "../middlewares/auth.middleware.js";
 import AuthService from "../services/auth.service.js";
 import AccountService from "../services/account.service.js";
 import PaymentService from "../services/payment.service.js";
+import { ApiResponse } from "../vendor/pavel_vacha/interfaces/ApiResponse.interface.js";
 
 
 @Service()
@@ -21,8 +22,12 @@ class PaymentController {
         this.paymentService = paymentService;
     }
 
-    async history(_req: CustomRequest, res: Response) {
-        throw new Error("Method not implemented.");
+
+    async getByEmail(_req: Request, res: Response) {
+        const { email }: { email: string } = _req.body;
+        const result = this.paymentService.getByEmail(email);
+
+        return new ApiResponse({ message: "Zde jsou vaše platby", data: result }).send(res);
     }
 
 }

@@ -8,7 +8,7 @@ export default class CreateUserDto {
 
     @IsDefined()
     @Expose()
-    @Matches(RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/))
+    // @Matches(RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/))
     password!: string;
 
     @IsDefined()

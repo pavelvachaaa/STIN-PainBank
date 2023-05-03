@@ -1,4 +1,4 @@
-import MockData from "../../data/MockData.js";
+import MockData from "../../MockData.js";
 import IPayment from "../../models/IPayment.js";
 import PaymentRepository from "../../repositories/payment.repository.js";
 import Database from "../../vendor/pavel_vacha/core/database.js";
