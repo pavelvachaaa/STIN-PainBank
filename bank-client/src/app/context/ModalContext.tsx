@@ -7,6 +7,8 @@ import { apiCall } from '@/services/api.service';
 import notify from '@/services/notification.service';
 import getErrorMessage from '@/utils/error.util';
 import { AccountContext } from './AccountContext';
+import { PaymentContext } from './PaymentContext';
+import IPayment from '@/types/interfaces';
 
 type ModalContextType = {
     isOpen: boolean;
@@ -44,6 +46,8 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     const [amount, setAmount] = useState<number>(0);
     const [type, setType] = useState<"IN" | "OUT">("IN");
     const { accounts, setAccounts } = useContext(AccountContext);
+    const { payments, setPayments } = useContext(PaymentContext);
+
 
 
     const toggleModal = ({ currency = "CZK", type = "IN" }: { currency: string, type: "IN" | "OUT" }) => {
@@ -112,8 +116,10 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
                                         const index = accounts.findIndex((acc) => acc.currency === data?.currency)
                                         if (index > -1) {
                                             accounts[index].balance += type == "IN" ? data?.amount : -data?.amount;
-                                            console.log(accounts);
+                                            const payment: IPayment = { amount: data?.amount, type: type, currency: data?.currency, timestamp: Date.now(), email: data?.email }
+                                            
                                             setAccounts([...accounts]);
+                                            setPayments([payment, ...payments]);
                                         }
                                         setIsOpen(false);
                                     }

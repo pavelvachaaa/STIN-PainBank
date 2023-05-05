@@ -1,29 +1,68 @@
 "use client";
+import { apiCall } from "@/services/api.service";
 import IPayment from "@/types/interfaces";
 import groupBy from "@/utils/array.util";
 import { Dropdown, Pagination, Table } from "flowbite-react";
-import { useState } from "react";
+import { getSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import LoadingCards from "../loading/loading.cards";
 
 const PAGE_SIZE = 10;
 
-export default function PaymentsTable({ payments = [] }: { payments: IPayment[] }) {
-    const currencies = (Object.keys(groupBy(payments, (item) => item.currency)) ?? []);
+async function getData(): Promise<IPayment[]> {
+    const session = await getSession()
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const [currencyFilter, setCurrencyFilter] = useState(currencies);
+    let data;
+    try {
+        data = await apiCall({ endpoint: "/payments/history", data: { email: session?.user?.email ?? "" } });
+    } catch (e) {
+        return [];
+    }
 
-    let number_of_pages = Math.ceil((payments ?? []).filter((payment) => currencyFilter.includes(payment.currency)).length / PAGE_SIZE)
+    return data.data;
+}
+
+
+export default function PaymentsTable() {
+    const [payments, setPayments] = useState<IPayment[]>();
+
+    const [isLoading, setLoading] = useState(false)
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [number_of_pages, setNumberOfPages] = useState<number>();
+    const [currencyFilter, setCurrencyFilter] = useState<string[]>();
+    const [currencies, setCurrencies] = useState<string[]>();
+
+    useEffect(() => {
+        setLoading(true)
+        getData()
+            .then((data) => {
+                setPayments(data ?? [])
+                const curr = Object.keys(groupBy(data ?? [], (item) => item.currency)) ?? [];
+                setCurrencyFilter(curr);
+                setCurrencies(curr);
+                setNumberOfPages(Math.ceil((data ?? []).filter((payment) => curr?.includes(payment.currency)).length / PAGE_SIZE))
+                setLoading(false)
+            })
+    }, [])
 
     const filterChange = (currency: string): void => {
-        /// TODO:
-        /// Při změně filtru zkontrolovat počet pages a počet vyfiltrovaných itemů
-        /// A podle toho uživatele v paginaci přesměrovat, kdyby čísla neseděla
-        if (currencyFilter.includes(currency)) {
-            setCurrencyFilter(currencyFilter.filter((val) => val !== currency))
+        let filters: string[] = []
+        if (currencyFilter?.includes(currency)) {
+            filters = currencyFilter?.filter((val) => val !== currency)
+            setCurrencyFilter(filters)
+            setNumberOfPages(Math.ceil((payments ?? []).filter((payment) => filters.includes(payment.currency)).length / PAGE_SIZE));
+
         } else {
-            setCurrencyFilter([...currencyFilter, currency])
+            filters = [...currencyFilter ?? [], currency]
+            setCurrencyFilter(filters)
+            setNumberOfPages(Math.ceil((payments ?? []).filter((payment) => filters.includes(payment.currency)).length / PAGE_SIZE));
         }
+
+        setCurrentPage(1);
     }
+
+    if (isLoading) return LoadingCards()
+
 
     return (
         <>
@@ -47,11 +86,11 @@ export default function PaymentsTable({ payments = [] }: { payments: IPayment[] 
                             <div className="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
                                 <div className="flex items-center w-full space-x-3 md:w-auto">
                                     <Dropdown label="Filtry"  >
-                                        {currencies.map((item) => {
+                                        {(currencies ?? []).map((item) => {
                                             return (
                                                 <Dropdown.Item key={item}>
                                                     <div className="flex items-center">
-                                                        <input id="checkbox-item-1" type="checkbox" value={item} checked={currencyFilter.includes(item)} onChange={(currency) => filterChange(currency.target.value)} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                        <input id="checkbox-item-1" type="checkbox" value={item} checked={(currencyFilter ?? []).includes(item)} onChange={(currency) => filterChange(currency.target.value)} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                         </input>
                                                         <label htmlFor="checkbox-item-1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{item}</label>
                                                     </div>
@@ -82,7 +121,7 @@ export default function PaymentsTable({ payments = [] }: { payments: IPayment[] 
                     </Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
-                    {(payments ?? []).filter((payment) => currencyFilter.includes(payment.currency)).slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE).map((payment) => {
+                    {(payments ?? []).filter((payment) => (currencyFilter ?? []).includes(payment.currency)).slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE).map((payment) => {
                         return (
                             <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={payment.timestamp}>
                                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white ">
@@ -106,7 +145,7 @@ export default function PaymentsTable({ payments = [] }: { payments: IPayment[] 
                 currentPage={currentPage}
                 nextLabel="Další"
                 previousLabel="Zpět"
-                totalPages={number_of_pages}
+                totalPages={number_of_pages ?? 1}
                 onPageChange={(page: number) => setCurrentPage(page)}
             />
         </>

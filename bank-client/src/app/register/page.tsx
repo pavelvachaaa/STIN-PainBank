@@ -8,8 +8,7 @@ export const metadata = {
 
 export default async function Register() {
     if (await getServerSession()) {
-        redirect("/dashboard");
-    }
-    
-    return <RegisterForm></RegisterForm>
+        return redirect("/dashboard");
+    } else
+        return <RegisterForm></RegisterForm>
 }

@@ -1,11 +1,16 @@
+"use client"
+
 import PaymentItem from "./paymen_item.component";
 import IPayment from "@/types/interfaces";
 import { getPayments } from "@/services/payment.service";
-import { getServerSession } from "next-auth";
+import { getSession } from "next-auth/react";
+import { useContext, useEffect, useState } from "react";
+import { PaymentContext } from "@/app/context/PaymentContext";
+import LoadingCards from "../loading/loading.cards";
 
 
 async function getData(): Promise<IPayment[]> {
-    const session = await getServerSession();
+    const session = await getSession();
     let data;
     try {
         data = await getPayments(session?.user?.email ?? "");
@@ -16,8 +21,20 @@ async function getData(): Promise<IPayment[]> {
     return data.data;
 }
 
-export default async function PaymentsOverview() {
-    const data = await getData();
+export default function PaymentsOverview() {
+    const { payments, setPayments } = useContext(PaymentContext);
+    const [isLoading, setLoading] = useState(false)
+
+    useEffect(() => {
+        setLoading(true)
+        getData()
+            .then((data) => {
+                setLoading(false)
+                setPayments(data ?? [])
+            })
+    }, [])
+
+    if (isLoading) return LoadingCards()
 
     return (
         <div className="w-full p-4  max-w-screen-md row-span-3 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -29,7 +46,7 @@ export default async function PaymentsOverview() {
             </div>
             <div className="flow-root">
                 <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
-                    {data.slice(0, 5).map((item) => {
+                    {payments.slice(0, 5).map((item) => {
                         return <PaymentItem  {...item} key={item.timestamp} ></PaymentItem>
                     })}
                 </ul>

@@ -8,10 +8,9 @@ export const metadata = {
 
 export default async function Login() {
     if (await getServerSession()) {
-        redirect("/dashboard");
-    }
-
-    return (
-        <LoginForm></LoginForm>
-    );
+        return redirect("/dashboard");
+    } else
+        return (
+            <LoginForm></LoginForm>
+        );
 }
