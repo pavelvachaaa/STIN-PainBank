@@ -1,6 +1,6 @@
-import { authApiCall } from "./apiAuth.service"
+import { apiCall } from "./api.service"
 
 export const getPayments = async (email: string) => {
-    const response = await authApiCall({ endpoint: "/payments/history", data: { email: email } })
+    const response = await apiCall({ endpoint: "/payments/history", data: { email: email } })
     return response
 }
