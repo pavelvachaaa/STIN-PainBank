@@ -8,6 +8,7 @@ import AccountProvider from './context/AccountContext';
 import Head from 'next/head';
 import PaymentProvider from './context/PaymentContext';
 
+
 export default function RootLayout({
   children,
 }: {
