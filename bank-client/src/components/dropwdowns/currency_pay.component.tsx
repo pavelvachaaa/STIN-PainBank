@@ -1,8 +1,7 @@
 "use client"
 import { apiCall } from "@/services/api.service";
-import { IApiResponse, ICurrency } from "@/types/interfaces";
-import { Select, TextInput } from "flowbite-react";
-import { useCallback, useEffect, useState } from "react";
+import { ICurrency } from "@/types/interfaces";
+import { useEffect, useState } from "react";
 
 const getData = async (): Promise<ICurrency[]> => {
     const res = await apiCall({ endpoint: "/currencies", method: "GET" })
@@ -46,7 +45,7 @@ export default function CurrencyPay({ onDropdownChange, onAmountChange, currency
                     {data.map((item) => <option key={item.name} value={item.name} >{item.name}</option>)}
                 </select>
             </span>
-            
+
             <input autoFocus={true}
                 type="number"
                 value={amount}
@@ -56,8 +55,5 @@ export default function CurrencyPay({ onDropdownChange, onAmountChange, currency
                 placeholder="20"
                 required={true} className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
         </div>
-
     )
-
-
 }

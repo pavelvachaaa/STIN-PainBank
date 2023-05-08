@@ -44,7 +44,7 @@ export const makeTransaction = async ({ currency, amount, type }: { currency: st
 export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [currency, setCurrency] = useState<string>("CZK");
-    const [amount, setAmount] = useState<number>(0);
+    const [amount, setAmount] = useState<number>();
     const [type, setType] = useState<"IN" | "OUT">("IN");
     const { accounts, setAccounts } = useContext(AccountContext);
     const { payments, setPayments } = useContext(PaymentContext);
@@ -74,7 +74,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     )
 
     const defaultState = () => {
-        setAmount(0);
+        setAmount(NaN);
     }
 
     return (
@@ -99,10 +99,10 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
                                                 <option value="OUT">Výběr</option>
                                             </select>
                                             <label htmlFor="amount" className="block mt-5 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Měna a částka</label>
-                                            <CurrencyPay amount={amount} currency={currency} onDropdownChange={updateCurrency} onAmountChange={updateAmount} ></CurrencyPay>
+                                            <CurrencyPay amount={amount!} currency={currency} onDropdownChange={updateCurrency} onAmountChange={updateAmount} ></CurrencyPay>
                                             <div className="items-center gap-2 mt-6 sm:flex">
                                                 <button type="submit" onClick={() => {
-                                                    makeTransaction({ amount: amount, type: type, currency: currency }).then((data) => {
+                                                    makeTransaction({ amount: amount ?? 0, type: type, currency: currency }).then((data) => {
                                                         if (data) {
                                                             const index = accounts.findIndex((acc) => acc.currency === data?.currency)
 
