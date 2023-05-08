@@ -44,12 +44,16 @@ const Header = () => {
                     <span className="sr-only">View notifications</span>
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                 </button>
-                <Dropdown arrowIcon={false} inline={true} className="m-auto" label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true}> </Avatar>} >
-                    <Dropdown.Header className="flex flex-col">
-                        <span className="font-bold"> {data?.user?.name ?? "Pavel Vácha"} </span>
-                        {/* <span className="whitespace-normal m-auto"> {data?.user?.email?.slice(1,10) ?? ""} </span> */}
-
+                <Dropdown arrowIcon={false} inline={true} className="" label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true}> </Avatar>} >
+                    <Dropdown.Header>
+                        <span className="block text-sm">
+                        {data?.user?.name ?? "Tohle by se nemělo stávat"}
+                        </span>
+                        <span className="block truncate text-sm font-medium min-w-max">
+                        {data?.user?.email ?? "Tohle by se nemělo stávat"}
+                        </span>
                     </Dropdown.Header>
+
                     <Dropdown.Item >
                         <Link href={"/dashboard"}>Dashboard</Link>
                     </Dropdown.Item>
