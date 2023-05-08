@@ -46,8 +46,8 @@ const Header = () => {
                 </button>
                 <Dropdown arrowIcon={false} inline={true} className="m-auto" label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true}> </Avatar>} >
                     <Dropdown.Header className="flex flex-col">
-                        <span> {data?.user?.name ?? "Pavel Vácha"} </span>
-                        <span className="whitespace-normal m-auto"> {data?.user?.email ?? ""} </span>
+                        <span className="font-bold"> {data?.user?.name ?? "Pavel Vácha"} </span>
+                        {/* <span className="whitespace-normal m-auto"> {data?.user?.email?.slice(1,10) ?? ""} </span> */}
 
                     </Dropdown.Header>
                     <Dropdown.Item >
