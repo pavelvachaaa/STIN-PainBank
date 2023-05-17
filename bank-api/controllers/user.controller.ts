@@ -15,7 +15,7 @@ class UserController {
     async register(_req: Request, res: Response) {
         const user: CreateUserDto = _req.body as CreateUserDto;
         const result = await this.userService.register(user);
-
+        
         return new ApiResponse({ data: result, message: "Úspěšně jsme Vás zaregistrovali do naší banky" }).send(res);
     }
 }

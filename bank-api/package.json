@@ -7,7 +7,6 @@
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js  --coverage",
     "build": "tsc",
-    "mrdat": "nodemon ./index.ts",
     "start": "node dist/init.js && node dist/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon --ignore ./data/db.json --ignore ./data/**/*  -q ./dist/index.js\""
   },
