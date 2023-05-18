@@ -13,13 +13,10 @@ import DepositDto from "../dtos/deposit_dto.js";
 
 @Service()
 class AccountController {
-    private readonly userService;
-    private readonly authService;
+
     private readonly accountService
 
-    constructor(userService: UserService, authService: AuthService, accountService: AccountService) {
-        this.userService = userService;
-        this.authService = authService;
+    constructor(accountService: AccountService) {
         this.accountService = accountService;
     }
 

@@ -9,11 +9,9 @@ import AuthenticateDto from "../dtos/authenticate.dto.js";
 
 @Service()
 class AuthController {
-    private readonly userService;
     private readonly authService;
 
-    constructor(userService: UserService, authService: AuthService) {
-        this.userService = userService;
+    constructor(authService: AuthService) {
         this.authService = authService;
     }
 
