@@ -6,6 +6,8 @@ import { ToastContainer } from 'react-toastify';
 import { ModalProvider } from './context/ModalContext';
 import AccountProvider from './context/AccountContext';
 import Head from 'next/head';
+import PaymentProvider from './context/PaymentContext';
+
 
 export default function RootLayout({
   children,
@@ -20,15 +22,17 @@ export default function RootLayout({
       </Head>
       <body className="bg-gray-50 dark:bg-gray-900 overflow-x-hidden">
         <AuthContext>
-          <AccountProvider>
-            <ModalProvider>
-              <ToastContainer
-                theme='dark' />
-              <FlowbiteContext>
-                {children}
-              </FlowbiteContext>
-            </ModalProvider>
-          </AccountProvider>
+          <PaymentProvider>
+            <AccountProvider>
+              <ModalProvider>
+                <ToastContainer
+                  theme='dark' />
+                <FlowbiteContext>
+                  {children}
+                </FlowbiteContext>
+              </ModalProvider>
+            </AccountProvider>
+          </PaymentProvider>
         </AuthContext>
       </body>
     </html>

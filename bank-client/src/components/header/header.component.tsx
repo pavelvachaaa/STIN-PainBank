@@ -18,7 +18,7 @@ const Header = () => {
     const { data } = useSession();
 
     return (
-        <Navbar className="px-4 lg:px-6 py-2.5" fluid={true} rounded={true} >
+        <Navbar className="px-4 lg:px-6 py-2.5 overflow-x-hidden w-screen" fluid={true} rounded={true} >
             <div className="flex justify-start items-center">
                 <Navbar.Brand href="/dashboard">
                     <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9" alt="PainBank Logo" />
@@ -34,7 +34,7 @@ const Header = () => {
                     </div>
                 </form>
             </div>
-            <div className="flex md:order-2">
+            <div className="flex">
                 <ModalButton></ModalButton>
                 <button type="button" data-dropdown-toggle="notification-dropdown" className="p-1 mr-1 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                     <span className="sr-only">View notifications</span>
@@ -44,11 +44,16 @@ const Header = () => {
                     <span className="sr-only">View notifications</span>
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                 </button>
-                <Dropdown arrowIcon={false} inline={true} label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true}> </Avatar>} >
+                <Dropdown arrowIcon={false} inline={true} className="" label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true}> </Avatar>} >
                     <Dropdown.Header>
-                        <span className="block text-sm"> {data?.user?.name ?? "Pavel Vácha"} </span>
-                        <span className="block truncate text-sm font-medium"> {data?.user?.email ?? ""} </span>
+                        <span className="block text-sm">
+                        {data?.user?.name ?? "Tohle by se nemělo stávat"}
+                        </span>
+                        <span className="block truncate text-sm font-medium min-w-max">
+                        {data?.user?.email ?? "Tohle by se nemělo stávat"}
+                        </span>
                     </Dropdown.Header>
+
                     <Dropdown.Item >
                         <Link href={"/dashboard"}>Dashboard</Link>
                     </Dropdown.Item>

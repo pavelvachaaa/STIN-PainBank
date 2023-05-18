@@ -1,7 +1,5 @@
 name: "CI/CD Workflow"
 on:
-   push:
-     branches: [ "main", "dev" ]
    pull_request:
      branches: [ "main", "dev" ]
 

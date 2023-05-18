@@ -22,7 +22,7 @@ export class ApiResponse {
     }
 
     send(res: Response): void {
-        res.status(this.responseCode ?? 200).send(this);
+        res.status(this.responseCode ?? 200)?.send(this);
         return;
     }
 

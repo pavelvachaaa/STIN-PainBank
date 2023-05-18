@@ -25,11 +25,11 @@ const sendMail = ({ to, code }: { to: string, code: number }) => {
 
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-            console.log(error);
+            //console.log(error);
         } else {
             // Asi nechci throwovat chybu, protože by to zrušilo i tak úspěšný response
             // Tudíž uděláme tlačítko na opětovné odeslání kodu
-            console.log('Email sent: ' + info.response);
+           // console.log('Email sent: ' + info.response);
         }
     });
 }

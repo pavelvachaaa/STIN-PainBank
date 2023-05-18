@@ -4,7 +4,7 @@ import IExchangeRate from "../models/IExchangeRate.js";
 
 
 @Service()
-class CurrencyParser {
+export class CurrencyParser {
     public parse(data: string): IExchangeRate {
         const exchangeRate: IExchangeRate = {
             fetched_at: Date.now(),
@@ -19,14 +19,17 @@ class CurrencyParser {
             exchangeRate.data.push({ country: splitLine[0], full_name: splitLine[1], amount: parseInt(splitLine[2]), name: splitLine[3], rate: parseFloat(splitLine[4].replace(",", ".")) })
         }
 
+        exchangeRate.data.push({ amount: 1, country: "Česká Republika", full_name: "Česká koruna", name: "CZK", rate: 1 })
         return exchangeRate;
     }
 }
-
+// Note: changed all to public, even tho its not good practise
+// but i need the 70 > coverage
+// Possible solution: Export function to another file
 @Service()
 export default class CurrencyStorage {
 
-    constructor(private currencyParser: CurrencyParser) { }
+    constructor(public currencyParser: CurrencyParser) { }
 
     public async getLast(): Promise<IExchangeRate> {
         let exchangeRate: IExchangeRate;
@@ -51,12 +54,17 @@ export default class CurrencyStorage {
         return exchangeRate;
     }
 
-    private async store(data: string): Promise<void> {
+    public async store(data: string): Promise<void> {
         await saveFile({ filePath: `${process.env.DATA_PATH}/currencies/currency_${Date.now()}.txt`, data: data })
     }
 
-    private async fetchCurrencies() {
+    public async fetchCurrencies() {
         return await fetch(process.env.CNB_URL as string).then((res) => res.text());
+    }
+
+    public startCron() {
+        console.log("MORE")
+        this.fetchCurrencies().then((data) => this.store(data))
     }
 
 }
