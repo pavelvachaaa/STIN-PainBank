@@ -28,7 +28,7 @@ const openAccount = async (currency: string): Promise<IAccount | null> => {
 
 export default function OpenAccount({ onAccountOpen }: { onAccountOpen: any }) {
     const [isOpen, setIsOpen] = useState(false);
-    const [currency, setCurrency] = useState("");
+    const [currency, setCurrency] = useState("AUD");
 
     return (
         <>
