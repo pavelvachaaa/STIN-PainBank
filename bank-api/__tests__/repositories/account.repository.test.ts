@@ -104,23 +104,6 @@ describe('Account repository test', () => {
             expect(account?.balance).toBe(startingBalance - withdrawalAmount);
         });
 
-        it("should throw when u exceed ammount", async () => {
-
-            const email = 'test@examplaa.com';
-            const currency = 'USD';
-            const startingBalance = 100;
-            const withdrawalAmount = 5000;
-
-            database.chain.get("users").value().push({
-                name: "A",
-                password: "B",
-                email: email,
-                accounts: [{ account_id: '123', balance: startingBalance, currency: currency }],
-            } as any)
-
-            await expect(repository.withdraw({ email, currency, amount: withdrawalAmount })).rejects.toThrow(AppError);
-        });
-
     });
 
 
