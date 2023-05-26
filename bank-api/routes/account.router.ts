@@ -11,7 +11,6 @@ const Router = express.Router();
 const accountController = Container.get(AccountController);
 
 Router.post('/open', requestValidator(OpenAccountDTO), auth, (req: Request, res: Response) => accountController.open(req as CustomRequest, res));
-Router.post('/close', auth, (req: Request, res: Response) => accountController.close(req as CustomRequest, res));
 Router.post('/withdraw', requestValidator(WithdrawDto), auth, (req: Request, res: Response) => accountController.withdraw(req as CustomRequest, res));
 Router.post('/deposit', requestValidator(DepositDto), auth, (req: Request, res: Response) => accountController.deposit(req as CustomRequest, res));
 Router.post('/get', auth, (req: Request, res: Response) => accountController.getUserAccounts(req as CustomRequest, res));

@@ -37,16 +37,11 @@ export class AccountRepository implements IAccountRepository {
 
     async withdraw(dto: WithdrawDto) {
         let account = this.db.chain.get("users").find({ email: dto.email }).get("accounts").find({ currency: dto.currency }).value();
-        if(!account){
+        if (!account) {
             throw new AppError({ description: "Nemohli jsme najít účet, ze kterého vybrat prostředky", httpCode: HttpCode.BAD_REQUEST });
         }
 
-        if (account?.balance < dto.amount) {
-            throw new AppError({ description: "Nedostatečné prostředky", httpCode: HttpCode.BAD_REQUEST, });
-        } else {
-            account.balance -= dto.amount;
-        }
-
+        account.balance -= dto.amount;
         await this.db.write();
     }
 

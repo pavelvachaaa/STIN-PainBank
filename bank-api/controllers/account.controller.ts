@@ -36,10 +36,6 @@ class AccountController {
         return new ApiResponse({ data: result, message: "Vytvořili jsme vám účet" }).send(res);
     }
 
-    async close(_req: CustomRequest, res: Response) {
-        throw new Error("Method not implemented.");
-    }
-
     async withdraw(_req: CustomRequest, res: Response) {
         /// TODO: Check resources
         const dto: WithdrawDto = _req.body;
@@ -69,10 +65,6 @@ class AccountController {
         const result = await this.accountService.deposit(dto);
 
         return new ApiResponse({ data: result, message: "Úspěšně jsme vám připsali peníze na účet" }).send(res);
-    }
-
-    async history(_req: CustomRequest, res: Response) {
-        throw new Error("Method not implemented.");
     }
 
 }
